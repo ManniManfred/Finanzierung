@@ -13,8 +13,6 @@ namespace FinzanzierungsApp
 {
     public partial class FinazierungControl : UserControl
     {
-        private List<BausteinControl> bausteine = new List<BausteinControl>();
-
         public FinazierungControl()
         {
             InitializeComponent();
@@ -26,6 +24,8 @@ namespace FinzanzierungsApp
             set => tbTitle.Text = value;
         }
 
+        public BindingList<BausteinControl> Bausteine { get; } = new BindingList<BausteinControl>();
+
         private void CalcSummen()
         {
             double auszahlung = 0.0;
@@ -36,7 +36,7 @@ namespace FinzanzierungsApp
             DateTime startDate = DateTime.MaxValue;
             DateTime endDate = DateTime.MinValue;
 
-            foreach(var baustein in bausteine)
+            foreach(var baustein in Bausteine)
             {
                 auszahlung += baustein.Auszahlung;
                 rate += baustein.Rate;
@@ -67,10 +67,10 @@ namespace FinzanzierungsApp
             CalcSummen();
         }
 
-        private BausteinControl AddBaustein()
+        public BausteinControl AddBaustein()
         {
-            var baustein = new BausteinControl();
-            bausteine.Add(baustein);
+            var baustein = new BausteinControl(this);
+            Bausteine.Add(baustein);
             flowPanel.Controls.Add(baustein);
 
             baustein.SmthChanged += Baustein_SmthChanged;
@@ -78,9 +78,9 @@ namespace FinzanzierungsApp
         }
 
 
-        private void RemoveBaustein(BausteinControl baustein)
+        public void RemoveBaustein(BausteinControl baustein)
         {
-            bausteine.Remove(baustein);
+            Bausteine.Remove(baustein);
             flowPanel.Controls.Remove(baustein);
             baustein.SmthChanged -= Baustein_SmthChanged;
         }
@@ -93,7 +93,7 @@ namespace FinzanzierungsApp
         public void ToXml(XElement xFinazierung)
         {
             xFinazierung.Add(new XAttribute(nameof(Title), Title));
-            foreach (var baustein in bausteine)
+            foreach (var baustein in Bausteine)
             {
                 var xBaustein = new XElement("Baustein");
                 xFinazierung.Add(xBaustein);

@@ -14,10 +14,12 @@ namespace FinzanzierungsApp
     public partial class BausteinControl : UserControl
     {
         public event EventHandler SmthChanged;
+        private BausteinControl parentBaustein;
 
-        public BausteinControl()
+        public BausteinControl(FinazierungControl finazierung)
         {
             InitializeComponent();
+            Finazierung = finazierung;
         }
 
         public string Title
@@ -30,10 +32,10 @@ namespace FinzanzierungsApp
         {
             get
             {
-                double.TryParse(tbStart.Text, out double result);
+                double.TryParse(tbAuszahlung.Text, out double result);
                 return result;
             }
-            set => tbStart.Text = "" + value;
+            set => tbAuszahlung.Text = "" + value;
         }
 
         public double ZinsenProJahr
@@ -76,6 +78,47 @@ namespace FinzanzierungsApp
         public int Monate { get; set; }
         public double GezahlteZinsen { get; set; }
         public DateTime EndDatum { get; set; }
+        public FinazierungControl Finazierung { get; }
+
+        public BausteinControl ParentBaustein
+        {
+            get
+            {
+                return parentBaustein;
+            }
+            set
+            {
+                if (parentBaustein != null)
+                {
+                    parentBaustein.SmthChanged -= ParentBaustein_SmthChanged;
+                }
+                parentBaustein = value;
+
+                tbAnschluss.Text = parentBaustein?.Title;
+                tbAuszahlung.ReadOnly = parentBaustein != null;
+
+                if (ParentBaustein != null)
+                {
+                    ParentBaustein.SmthChanged += ParentBaustein_SmthChanged;
+                }
+
+                TakeFromParent();
+            }
+        }
+
+        private void ParentBaustein_SmthChanged(object sender, EventArgs e)
+        {
+            TakeFromParent();
+        }
+
+        private void TakeFromParent()
+        {
+            if (ParentBaustein == null)
+                return;
+
+            Auszahlung = ParentBaustein.RestSchuld;
+            StartDatum = ParentBaustein.EndDatum;
+        }
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
@@ -95,7 +138,7 @@ namespace FinzanzierungsApp
             var rate = Rate;
             var laufzeitInMonate = Laufzeit * 12;
 
-            
+
             var zinsenProMonat = zinsenProJahr / 12;
             var restSchuld = startSchuld;
             double gezahlteZinsen = 0.0;
@@ -167,6 +210,24 @@ namespace FinzanzierungsApp
             Rate = ele.GetAttributeValue(nameof(Rate), Rate);
             Laufzeit = ele.GetAttributeValue(nameof(Laufzeit), Laufzeit);
             StartDatum = ele.GetAttributeValue(nameof(StartDatum), StartDatum);
+        }
+
+        private void BtRemove_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show($"Baustein {this.Title} wirklich  Löschen?", "Löschen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                Finazierung.RemoveBaustein(this);
+        }
+
+        private void BtAdd_Click(object sender, EventArgs e)
+        {
+            Finazierung.AddBaustein();
+        }
+
+        private void BtAnschluss_Click(object sender, EventArgs e)
+        {
+            var anschluss = Finazierung.AddBaustein();
+            anschluss.ParentBaustein = this;
+            anschluss.Title = "-> " + Title;
         }
     }
 }

@@ -108,5 +108,17 @@
   <ItemGroup>
     <None Include="Resources\list-remove-3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-right-double.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-remove-5.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
