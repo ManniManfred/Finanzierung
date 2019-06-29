@@ -67,9 +67,9 @@
             // 
             this.flowPanel.AutoScroll = true;
             this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowPanel.Location = new System.Drawing.Point(0, 264);
+            this.flowPanel.Location = new System.Drawing.Point(0, 258);
             this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(647, 317);
+            this.flowPanel.Size = new System.Drawing.Size(647, 323);
             this.flowPanel.TabIndex = 2;
             // 
             // panel1
@@ -79,7 +79,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(647, 264);
+            this.panel1.Size = new System.Drawing.Size(647, 258);
             this.panel1.TabIndex = 3;
             // 
             // groupBox1
@@ -103,7 +103,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(11, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(273, 236);
+            this.groupBox1.Size = new System.Drawing.Size(273, 229);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Summe";

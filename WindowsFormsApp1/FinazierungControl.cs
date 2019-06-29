@@ -26,7 +26,7 @@ namespace FinzanzierungsApp
             set => tbTitle.Text = value;
         }
 
-        private void UpdateSummen()
+        private void CalcSummen()
         {
             double auszahlung = 0.0;
             double rate = 0.0;
@@ -55,7 +55,7 @@ namespace FinzanzierungsApp
 
         private void BtRefresh_Click(object sender, EventArgs e)
         {
-            UpdateSummen();
+            CalcSummen();
         }
 
         private BausteinControl AddBaustein()
@@ -63,7 +63,22 @@ namespace FinzanzierungsApp
             var baustein = new BausteinControl();
             bausteine.Add(baustein);
             flowPanel.Controls.Add(baustein);
+
+            baustein.SmthChanged += Baustein_SmthChanged;
             return baustein;
+        }
+
+
+        private void RemoveBaustein(BausteinControl baustein)
+        {
+            bausteine.Remove(baustein);
+            flowPanel.Controls.Remove(baustein);
+            baustein.SmthChanged -= Baustein_SmthChanged;
+        }
+
+        private void Baustein_SmthChanged(object sender, EventArgs e)
+        {
+            CalcSummen();
         }
 
         public void ToXml(XElement xFinazierung)

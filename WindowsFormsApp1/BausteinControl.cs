@@ -13,6 +13,8 @@ namespace FinzanzierungsApp
 {
     public partial class BausteinControl : UserControl
     {
+        public event EventHandler SmthChanged;
+
         public BausteinControl()
         {
             InitializeComponent();
@@ -115,6 +117,8 @@ namespace FinzanzierungsApp
             Monate = monat;
             RestSchuld = restSchuld;
             GezahlteZinsen = gezahlteZinsen;
+
+            SmthChanged?.Invoke(this, EventArgs.Empty);
         }
 
         //private void CalcRestschuld(int laufzeitInMonate)
