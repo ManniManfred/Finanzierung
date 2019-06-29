@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApp1
+﻿namespace FinzanzierungsApp
 {
-    partial class Blatt
+    partial class BausteinControl
     {
         /// <summary> 
         /// Erforderliche Designervariable.

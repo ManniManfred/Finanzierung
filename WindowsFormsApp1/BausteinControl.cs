@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
-namespace WindowsFormsApp1
+namespace FinzanzierungsApp
 {
-    public partial class Blatt : UserControl
+    public partial class BausteinControl : UserControl
     {
-        public Blatt()
+        public BausteinControl()
         {
             InitializeComponent();
         }

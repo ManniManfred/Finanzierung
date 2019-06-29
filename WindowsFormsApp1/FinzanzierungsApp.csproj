@@ -46,26 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blatt.cs">
+    <Compile Include="BausteinControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Blatt.Designer.cs">
-      <DependentUpon>Blatt.cs</DependentUpon>
+    <Compile Include="BausteinControl.Designer.cs">
+      <DependentUpon>BausteinControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FinazierungControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FinazierungControl.Designer.cs">
+      <DependentUpon>FinazierungControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinzanzierungsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FinzanzierungsForm.Designer.cs">
+      <DependentUpon>FinzanzierungsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Blatt.resx">
-      <DependentUpon>Blatt.cs</DependentUpon>
+    <EmbeddedResource Include="BausteinControl.resx">
+      <DependentUpon>BausteinControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FinazierungControl.resx">
+      <DependentUpon>FinazierungControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinzanzierungsForm.resx">
+      <DependentUpon>FinzanzierungsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
