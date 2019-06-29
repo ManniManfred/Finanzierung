@@ -64,7 +64,7 @@ namespace WindowsFormsApp1
                 monat++;
             }
 
-            tbGesamt.Text = "" + (monat * rate);
+            tbGesamt.Text = "" + (monat * rate + restSchuld).ToString("0,0.##");
             tbDauer.Text = "" + (monat / 12) + " Jahre " + (monat % 12) + " Monate";
 
             Monate = monat;
