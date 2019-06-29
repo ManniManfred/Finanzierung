@@ -33,19 +33,28 @@ namespace FinzanzierungsApp
             double gezahlteZinsen = 0.0;
             int monate = 0;
 
+            DateTime startDate = DateTime.MaxValue;
+            DateTime endDate = DateTime.MinValue;
+
             foreach(var baustein in bausteine)
             {
                 auszahlung += baustein.Auszahlung;
                 rate += baustein.Rate;
                 gezahlteZinsen += baustein.GezahlteZinsen;
-                monate = Math.Max(baustein.Monate, monate);
+
+                startDate = baustein.StartDatum < startDate ? baustein.StartDatum : startDate;
+                endDate = baustein.EndDatum > endDate ? baustein.EndDatum : endDate;
+
+                //monate = Math.Max(baustein.Monate, monate);
             }
 
             tbStart.Text = auszahlung.ToString("N2");
             tbRate.Text = rate.ToString("N2");
             tbGezahlteZinsen.Text = gezahlteZinsen.ToString("N2");
 
+            monate = endDate.MonthDifference(startDate);
             tbDauer.Text = "" + (monate / 12) + " Jahre " + (monate % 12) + " Monate";
+            //tbDauer.Text = (endDate - startDate).ToString("")
         }
 
         private void BtAddBaustein_Click(object sender, EventArgs e)

@@ -10,6 +10,11 @@ namespace FinzanzierungsApp
 {
     public static class Extensions
     {
+        public static int MonthDifference(this DateTime lValue, DateTime rValue)
+        {
+            return Math.Abs((lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year));
+        }
+
         public static string GetAttributeValue(this XElement ele, string name, string fallback)
         {
             var attr = ele.Attribute(name);
@@ -38,6 +43,18 @@ namespace FinzanzierungsApp
                 return fallback;
 
             if (!int.TryParse(attr.Value, out int result))
+                return fallback;
+
+            return result;
+        }
+
+        public static DateTime GetAttributeValue(this XElement ele, string name, DateTime fallback)
+        {
+            var attr = ele.Attribute(name);
+            if (attr == null)
+                return fallback;
+
+            if (!DateTime.TryParse(attr.Value, out var result))
                 return fallback;
 
             return result;

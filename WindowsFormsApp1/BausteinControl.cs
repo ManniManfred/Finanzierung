@@ -66,9 +66,16 @@ namespace FinzanzierungsApp
             set => tbLaufzeit.Text = "" + value;
         }
 
+        public DateTime StartDatum
+        {
+            get => startDate.Value;
+            set => startDate.Value = value;
+        }
+
         public double RestSchuld { get; set; }
         public int Monate { get; set; }
         public double GezahlteZinsen { get; set; }
+        public DateTime EndDatum { get; set; }
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
@@ -108,15 +115,18 @@ namespace FinzanzierungsApp
                         break;
                 }
             }
+
+            Monate = monat;
+            RestSchuld = restSchuld;
+            GezahlteZinsen = gezahlteZinsen;
+            EndDatum = StartDatum.AddMonths(monat);
+
             tbGesamt.Text = "" + (monat * rate + restSchuld).ToString("N2");
             tbGezahlteZinsen.Text = (gezahlteZinsen).ToString("N2");
             tbRestSchuld.Text = restSchuld.ToString("N2");
 
             tbDauer.Text = "" + (monat / 12) + " Jahre " + (monat % 12) + " Monate";
-
-            Monate = monat;
-            RestSchuld = restSchuld;
-            GezahlteZinsen = gezahlteZinsen;
+            tbEnde.Text = EndDatum.ToString();
 
             SmthChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -146,6 +156,7 @@ namespace FinzanzierungsApp
             ele.Add(new XAttribute(nameof(ZinsenProJahr), ZinsenProJahr));
             ele.Add(new XAttribute(nameof(Rate), Rate));
             ele.Add(new XAttribute(nameof(Laufzeit), Laufzeit));
+            ele.Add(new XAttribute(nameof(StartDatum), StartDatum));
         }
 
         public void FromXml(XElement ele)
@@ -155,6 +166,7 @@ namespace FinzanzierungsApp
             ZinsenProJahr = ele.GetAttributeValue(nameof(ZinsenProJahr), ZinsenProJahr);
             Rate = ele.GetAttributeValue(nameof(Rate), Rate);
             Laufzeit = ele.GetAttributeValue(nameof(Laufzeit), Laufzeit);
+            StartDatum = ele.GetAttributeValue(nameof(StartDatum), StartDatum);
         }
     }
 }
