@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace WindowsFormsApp1
 {
@@ -17,22 +18,50 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
+        public string Title
+        {
+            get => tbTitle.Text;
+            set => tbTitle.Text = value;
+        }
+
         public double StartSchuld
         {
-            get => double.Parse(tbStart.Text);
+            get
+            {
+                double.TryParse(tbStart.Text, out double result);
+                return result;
+            }
             set => tbStart.Text = "" + value;
         }
 
         public double ZinsenProJahr
         {
-            get => double.Parse(tbZinsen.Text);
+            get
+            {
+                double.TryParse(tbZinsen.Text, out double result);
+                return result;
+            }
             set => tbZinsen.Text = "" + value;
         }
 
         public double Rate
         {
-            get => double.Parse(tbRate.Text);
+            get
+            {
+                double.TryParse(tbRate.Text, out double result);
+                return result;
+            }
             set => tbRate.Text = "" + value;
+        }
+
+        public int Laufzeit
+        {
+            get
+            {
+                int.TryParse(tbLaufzeit.Text, out int result);
+                return result;
+            }
+            set => tbLaufzeit.Text = "" + value;
         }
 
         public double RestSchuld { get; set; }
@@ -51,24 +80,40 @@ namespace WindowsFormsApp1
 
         private void CalcMonate()
         {
-            var startSchuld = double.Parse(tbStart.Text);
-            var zinsenProJahr = double.Parse(tbZinsen.Text) / 100;
-            var rate = double.Parse(tbRate.Text);
+            var startSchuld = StartSchuld;
+            var zinsenProJahr = ZinsenProJahr / 100;
+            var rate = Rate;
+            var laufzeitInMonate = Laufzeit * 12;
 
+            
             var zinsenProMonat = zinsenProJahr / 12;
             var restSchuld = startSchuld;
+            double gezahlteZinsen = 0.0;
             int monat = 0;
-            while (restSchuld > 0.0 && !double.IsInfinity(restSchuld))
-            {
-                restSchuld = restSchuld * (1 + zinsenProMonat) - rate;
-                monat++;
-            }
 
-            tbGesamt.Text = "" + (monat * rate + restSchuld).ToString("0,0.##");
+            if (startSchuld != 0.0 || zinsenProJahr != 0.0 || rate != 0.0)
+            {
+                while (restSchuld > 0.0
+                    && !double.IsInfinity(restSchuld)
+                    && (laufzeitInMonate == 0 || monat < laufzeitInMonate))
+                {
+                    gezahlteZinsen += restSchuld * zinsenProMonat;
+                    restSchuld = restSchuld * (1 + zinsenProMonat) - rate;
+                    monat++;
+
+                    if (restSchuld >= startSchuld)
+                        break;
+                }
+            }
+            tbGesamt.Text = "" + (monat * rate + restSchuld).ToString("N2");
+            tbGezahlteZinsen.Text = (gezahlteZinsen).ToString("N2");
+            tbRestSchuld.Text = restSchuld.ToString("N2");
+
             tbDauer.Text = "" + (monat / 12) + " Jahre " + (monat % 12) + " Monate";
 
             Monate = monat;
-            RestSchuld = 0.0;
+            RestSchuld = restSchuld;
+
         }
 
         //private void CalcRestschuld(int laufzeitInMonate)
@@ -89,5 +134,22 @@ namespace WindowsFormsApp1
         //    RestSchuld = restSchuld;
         //}
 
+        public void ToXml(XElement ele)
+        {
+            ele.Add(new XAttribute(nameof(Title), Title));
+            ele.Add(new XAttribute(nameof(StartSchuld), StartSchuld));
+            ele.Add(new XAttribute(nameof(ZinsenProJahr), ZinsenProJahr));
+            ele.Add(new XAttribute(nameof(Rate), Rate));
+            ele.Add(new XAttribute(nameof(Laufzeit), Laufzeit));
+        }
+
+        public void FromXml(XElement ele)
+        {
+            Title = ele.GetAttributeValue(nameof(Title), Title);
+            StartSchuld = ele.GetAttributeValue(nameof(StartSchuld), StartSchuld);
+            ZinsenProJahr = ele.GetAttributeValue(nameof(ZinsenProJahr), ZinsenProJahr);
+            Rate = ele.GetAttributeValue(nameof(Rate), Rate);
+            Laufzeit = ele.GetAttributeValue(nameof(Laufzeit), Laufzeit);
+        }
     }
 }

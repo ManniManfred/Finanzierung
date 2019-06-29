@@ -28,45 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.blatt1 = new WindowsFormsApp1.Blatt();
-            this.blatt2 = new WindowsFormsApp1.Blatt();
+            this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // blatt1
+            // flowPanel
             // 
-            this.blatt1.Location = new System.Drawing.Point(12, 12);
-            this.blatt1.Monate = 0;
-            this.blatt1.Name = "blatt1";
-            this.blatt1.RestSchuld = 0D;
-            this.blatt1.Size = new System.Drawing.Size(238, 177);
-            this.blatt1.TabIndex = 0;
+            this.flowPanel.AutoScroll = true;
+            this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowPanel.Location = new System.Drawing.Point(0, 44);
+            this.flowPanel.Name = "flowPanel";
+            this.flowPanel.Size = new System.Drawing.Size(588, 291);
+            this.flowPanel.TabIndex = 0;
             // 
-            // blatt2
+            // panel1
             // 
-            this.blatt2.Location = new System.Drawing.Point(256, 12);
-            this.blatt2.Monate = 0;
-            this.blatt2.Name = "blatt2";
-            this.blatt2.RestSchuld = 0D;
-            this.blatt2.Size = new System.Drawing.Size(238, 177);
-            this.blatt2.TabIndex = 1;
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(588, 44);
+            this.panel1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(35, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "+";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 268);
-            this.Controls.Add(this.blatt2);
-            this.Controls.Add(this.blatt1);
+            this.ClientSize = new System.Drawing.Size(588, 335);
+            this.Controls.Add(this.flowPanel);
+            this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Blatt blatt1;
-        private Blatt blatt2;
+        private System.Windows.Forms.FlowLayoutPanel flowPanel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
