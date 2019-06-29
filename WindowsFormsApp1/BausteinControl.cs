@@ -35,7 +35,7 @@ namespace FinzanzierungsApp
                 double.TryParse(tbAuszahlung.Text, out double result);
                 return result;
             }
-            set => tbAuszahlung.Text = "" + value;
+            set => tbAuszahlung.Text = value.ToString("N2");
         }
 
         public double ZinsenProJahr
@@ -195,6 +195,7 @@ namespace FinzanzierungsApp
         public void ToXml(XElement ele)
         {
             ele.Add(new XAttribute(nameof(Title), Title));
+            ele.Add(new XAttribute(nameof(ParentBaustein), ParentBaustein?.Title ?? ""));
             ele.Add(new XAttribute(nameof(Auszahlung), Auszahlung));
             ele.Add(new XAttribute(nameof(ZinsenProJahr), ZinsenProJahr));
             ele.Add(new XAttribute(nameof(Rate), Rate));
@@ -205,6 +206,21 @@ namespace FinzanzierungsApp
         public void FromXml(XElement ele)
         {
             Title = ele.GetAttributeValue(nameof(Title), Title);
+
+            string parentBausteinTitle = "";
+            parentBausteinTitle = ele.GetAttributeValue(nameof(ParentBaustein), parentBausteinTitle);
+            if (!string.IsNullOrEmpty(parentBausteinTitle))
+            {
+                foreach(var b in Finazierung.Bausteine)
+                {
+                    if (b.Title == parentBausteinTitle)
+                    {
+                        ParentBaustein = b;
+                        break;
+                    }
+                }
+            }
+
             Auszahlung = ele.GetAttributeValue(nameof(Auszahlung), Auszahlung);
             ZinsenProJahr = ele.GetAttributeValue(nameof(ZinsenProJahr), ZinsenProJahr);
             Rate = ele.GetAttributeValue(nameof(Rate), Rate);
@@ -227,6 +243,7 @@ namespace FinzanzierungsApp
         {
             var anschluss = Finazierung.AddBaustein();
             anschluss.ParentBaustein = this;
+            anschluss.Rate = Rate;
             anschluss.Title = "-> " + Title;
         }
     }

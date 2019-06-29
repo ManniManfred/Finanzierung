@@ -24,7 +24,7 @@ namespace FinzanzierungsApp
             set => tbTitle.Text = value;
         }
 
-        public BindingList<BausteinControl> Bausteine { get; } = new BindingList<BausteinControl>();
+        public List<BausteinControl> Bausteine { get; } = new List<BausteinControl>();
 
         private void CalcSummen()
         {
