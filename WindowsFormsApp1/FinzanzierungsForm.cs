@@ -16,7 +16,7 @@ namespace FinzanzierungsApp
     {
         private const string FILENAME = "Daten.xml";
 
-        private List<FinazierungControl> blaetter = new List<FinazierungControl>();
+        private List<FinazierungControl> varianten = new List<FinazierungControl>();
 
         public FinzanzierungsForm()
         {
@@ -35,7 +35,7 @@ namespace FinzanzierungsApp
         {
             var variante = new FinazierungControl();
             variante.Dock = DockStyle.Fill;
-            blaetter.Add(variante);
+            varianten.Add(variante);
 
             var page = new TabPage();
             page.Controls.Add(variante);
@@ -44,11 +44,17 @@ namespace FinzanzierungsApp
             return variante;
         }
 
+        private void RemoveVariante(FinazierungControl variante)
+        {
+            varianten.Remove(variante);
+            tabs.TabPages.Remove(variante.Parent as TabPage);
+        }
+
         private void SaveData(string fileName)
         {
             XDocument doc = new XDocument(new XElement("Daten"));
 
-            foreach(var baustein in blaetter)
+            foreach(var baustein in varianten)
             {
                 var xBaustein = new XElement("Variante");
                 doc.Root.Add(xBaustein);
@@ -94,6 +100,19 @@ namespace FinzanzierungsApp
         private void BtAdd_Click(object sender, EventArgs e)
         {
             AddVariante();
+        }
+
+        private void BtRemove_Click(object sender, EventArgs e)
+        {
+            if (tabs.SelectedTab == null || tabs.SelectedTab.Controls.Count <= 0)
+                return;
+
+            var variante = tabs.SelectedTab.Controls[0] as FinazierungControl;
+            if (MessageBox.Show($"Variante {variante.Title} löschen?", "Löschen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+                 == DialogResult.Yes)
+            {
+                RemoveVariante(variante);
+            }
         }
     }
 }

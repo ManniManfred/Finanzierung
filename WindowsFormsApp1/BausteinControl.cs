@@ -24,7 +24,7 @@ namespace FinzanzierungsApp
             set => tbTitle.Text = value;
         }
 
-        public double StartSchuld
+        public double Auszahlung
         {
             get
             {
@@ -66,6 +66,7 @@ namespace FinzanzierungsApp
 
         public double RestSchuld { get; set; }
         public int Monate { get; set; }
+        public double GezahlteZinsen { get; set; }
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
@@ -80,7 +81,7 @@ namespace FinzanzierungsApp
 
         private void CalcMonate()
         {
-            var startSchuld = StartSchuld;
+            var startSchuld = Auszahlung;
             var zinsenProJahr = ZinsenProJahr / 100;
             var rate = Rate;
             var laufzeitInMonate = Laufzeit * 12;
@@ -113,7 +114,7 @@ namespace FinzanzierungsApp
 
             Monate = monat;
             RestSchuld = restSchuld;
-
+            GezahlteZinsen = gezahlteZinsen;
         }
 
         //private void CalcRestschuld(int laufzeitInMonate)
@@ -137,7 +138,7 @@ namespace FinzanzierungsApp
         public void ToXml(XElement ele)
         {
             ele.Add(new XAttribute(nameof(Title), Title));
-            ele.Add(new XAttribute(nameof(StartSchuld), StartSchuld));
+            ele.Add(new XAttribute(nameof(Auszahlung), Auszahlung));
             ele.Add(new XAttribute(nameof(ZinsenProJahr), ZinsenProJahr));
             ele.Add(new XAttribute(nameof(Rate), Rate));
             ele.Add(new XAttribute(nameof(Laufzeit), Laufzeit));
@@ -146,7 +147,7 @@ namespace FinzanzierungsApp
         public void FromXml(XElement ele)
         {
             Title = ele.GetAttributeValue(nameof(Title), Title);
-            StartSchuld = ele.GetAttributeValue(nameof(StartSchuld), StartSchuld);
+            Auszahlung = ele.GetAttributeValue(nameof(Auszahlung), Auszahlung);
             ZinsenProJahr = ele.GetAttributeValue(nameof(ZinsenProJahr), ZinsenProJahr);
             Rate = ele.GetAttributeValue(nameof(Rate), Rate);
             Laufzeit = ele.GetAttributeValue(nameof(Laufzeit), Laufzeit);

@@ -13,7 +13,7 @@ namespace FinzanzierungsApp
 {
     public partial class FinazierungControl : UserControl
     {
-        private List<BausteinControl> blaetter = new List<BausteinControl>();
+        private List<BausteinControl> bausteine = new List<BausteinControl>();
 
         public FinazierungControl()
         {
@@ -26,15 +26,42 @@ namespace FinzanzierungsApp
             set => tbTitle.Text = value;
         }
 
+        private void UpdateSummen()
+        {
+            double auszahlung = 0.0;
+            double rate = 0.0;
+            double gezahlteZinsen = 0.0;
+            int monate = 0;
+
+            foreach(var baustein in bausteine)
+            {
+                auszahlung += baustein.Auszahlung;
+                rate += baustein.Rate;
+                gezahlteZinsen += baustein.GezahlteZinsen;
+                monate = Math.Max(baustein.Monate, monate);
+            }
+
+            tbStart.Text = auszahlung.ToString("N2");
+            tbRate.Text = rate.ToString("N2");
+            tbGezahlteZinsen.Text = gezahlteZinsen.ToString("N2");
+
+            tbDauer.Text = "" + (monate / 12) + " Jahre " + (monate % 12) + " Monate";
+        }
+
         private void BtAddBaustein_Click(object sender, EventArgs e)
         {
             AddBaustein();
         }
 
+        private void BtRefresh_Click(object sender, EventArgs e)
+        {
+            UpdateSummen();
+        }
+
         private BausteinControl AddBaustein()
         {
             var baustein = new BausteinControl();
-            blaetter.Add(baustein);
+            bausteine.Add(baustein);
             flowPanel.Controls.Add(baustein);
             return baustein;
         }
@@ -42,7 +69,7 @@ namespace FinzanzierungsApp
         public void ToXml(XElement xFinazierung)
         {
             xFinazierung.Add(new XAttribute(nameof(Title), Title));
-            foreach (var baustein in blaetter)
+            foreach (var baustein in bausteine)
             {
                 var xBaustein = new XElement("Baustein");
                 xFinazierung.Add(xBaustein);
@@ -68,5 +95,6 @@ namespace FinzanzierungsApp
             if (parent != null)
                 parent.Text = tbTitle.Text;
         }
+
     }
 }

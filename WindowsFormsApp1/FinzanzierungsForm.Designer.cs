@@ -30,10 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinzanzierungsForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btAdd = new System.Windows.Forms.ToolStripButton();
-            this.btSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tabs = new System.Windows.Forms.TabControl();
+            this.btSave = new System.Windows.Forms.ToolStripButton();
+            this.btAdd = new System.Windows.Forms.ToolStripButton();
+            this.btRemove = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,32 +43,13 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btSave,
             this.toolStripSeparator1,
-            this.btAdd});
+            this.btAdd,
+            this.btRemove});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(588, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(778, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btAdd
-            // 
-            this.btAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btAdd.Image = ((System.Drawing.Image)(resources.GetObject("btAdd.Image")));
-            this.btAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(23, 22);
-            this.btAdd.Text = "Variante hinzufügen";
-            this.btAdd.Click += new System.EventHandler(this.BtAdd_Click);
-            // 
-            // btSave
-            // 
-            this.btSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btSave.Image = ((System.Drawing.Image)(resources.GetObject("btSave.Image")));
-            this.btSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btSave.Name = "btSave";
-            this.btSave.Size = new System.Drawing.Size(23, 22);
-            this.btSave.Text = "Speichern";
-            this.btSave.Click += new System.EventHandler(this.BtSave_Click);
             // 
             // toolStripSeparator1
             // 
@@ -80,18 +62,49 @@
             this.tabs.Location = new System.Drawing.Point(0, 25);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(588, 310);
+            this.tabs.Size = new System.Drawing.Size(778, 560);
             this.tabs.TabIndex = 1;
             // 
-            // Form1
+            // btSave
+            // 
+            this.btSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btSave.Image = global::WindowsFormsApp1.Properties.Resources.document_save_5;
+            this.btSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btSave.Name = "btSave";
+            this.btSave.Size = new System.Drawing.Size(23, 22);
+            this.btSave.Text = "Speichern";
+            this.btSave.Click += new System.EventHandler(this.BtSave_Click);
+            // 
+            // btAdd
+            // 
+            this.btAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btAdd.Image = global::WindowsFormsApp1.Properties.Resources.list_add_3;
+            this.btAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btAdd.Name = "btAdd";
+            this.btAdd.Size = new System.Drawing.Size(23, 22);
+            this.btAdd.Text = "Variante hinzufügen";
+            this.btAdd.Click += new System.EventHandler(this.BtAdd_Click);
+            // 
+            // btRemove
+            // 
+            this.btRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btRemove.Image = global::WindowsFormsApp1.Properties.Resources.list_remove_3;
+            this.btRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btRemove.Name = "btRemove";
+            this.btRemove.Size = new System.Drawing.Size(23, 22);
+            this.btRemove.Text = "Variante entfernen";
+            this.btRemove.Click += new System.EventHandler(this.BtRemove_Click);
+            // 
+            // FinzanzierungsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 335);
+            this.ClientSize = new System.Drawing.Size(778, 585);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FinzanzierungsForm";
+            this.Text = "Finanzierung";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -105,6 +118,7 @@
         private System.Windows.Forms.ToolStripButton btSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.TabControl tabs;
+        private System.Windows.Forms.ToolStripButton btRemove;
     }
 }
 

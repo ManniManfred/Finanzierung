@@ -31,25 +31,31 @@
             this.btAddBaustein = new System.Windows.Forms.Button();
             this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tbTitle = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tbLaufzeit = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbRate = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbZinsen = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbStart = new System.Windows.Forms.TextBox();
+            this.btRefresh = new System.Windows.Forms.Button();
+            this.tbTitle = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.tbGezahlteZinsen = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbDauer = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbRate = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbZinssatz = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btAddBaustein
             // 
-            this.btAddBaustein.Location = new System.Drawing.Point(316, 22);
+            this.btAddBaustein.Location = new System.Drawing.Point(301, 168);
             this.btAddBaustein.Name = "btAddBaustein";
             this.btAddBaustein.Size = new System.Drawing.Size(93, 23);
             this.btAddBaustein.TabIndex = 0;
@@ -61,157 +67,199 @@
             // 
             this.flowPanel.AutoScroll = true;
             this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowPanel.Location = new System.Drawing.Point(0, 160);
+            this.flowPanel.Location = new System.Drawing.Point(0, 264);
             this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(435, 192);
+            this.flowPanel.Size = new System.Drawing.Size(647, 317);
             this.flowPanel.TabIndex = 2;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.tbLaufzeit);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.tbRate);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.tbZinsen);
-            this.panel1.Controls.Add(this.tbStart);
-            this.panel1.Controls.Add(this.tbTitle);
+            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btAddBaustein);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(435, 160);
+            this.panel1.Size = new System.Drawing.Size(647, 264);
             this.panel1.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tbZinssatz);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.tbStart);
+            this.groupBox1.Controls.Add(this.btRefresh);
+            this.groupBox1.Controls.Add(this.tbTitle);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.tbGezahlteZinsen);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.tbDauer);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.tbRate);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Location = new System.Drawing.Point(11, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(273, 236);
+            this.groupBox1.TabIndex = 39;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Summe";
+            // 
+            // tbStart
+            // 
+            this.tbStart.Location = new System.Drawing.Point(83, 51);
+            this.tbStart.Name = "tbStart";
+            this.tbStart.ReadOnly = true;
+            this.tbStart.Size = new System.Drawing.Size(152, 20);
+            this.tbStart.TabIndex = 25;
+            this.tbStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // btRefresh
+            // 
+            this.btRefresh.Location = new System.Drawing.Point(18, 191);
+            this.btRefresh.Name = "btRefresh";
+            this.btRefresh.Size = new System.Drawing.Size(93, 23);
+            this.btRefresh.TabIndex = 38;
+            this.btRefresh.Text = "Aktualisieren";
+            this.btRefresh.UseVisualStyleBackColor = true;
+            this.btRefresh.Click += new System.EventHandler(this.BtRefresh_Click);
             // 
             // tbTitle
             // 
-            this.tbTitle.BackColor = System.Drawing.SystemColors.Control;
-            this.tbTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbTitle.Location = new System.Drawing.Point(71, 20);
+            this.tbTitle.Location = new System.Drawing.Point(83, 25);
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(151, 20);
             this.tbTitle.TabIndex = 24;
             this.tbTitle.TextChanged += new System.EventHandler(this.TbTitle_TextChanged);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(47, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 13);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "Titel";
+            // 
+            // tbGezahlteZinsen
+            // 
+            this.tbGezahlteZinsen.Location = new System.Drawing.Point(83, 77);
+            this.tbGezahlteZinsen.Name = "tbGezahlteZinsen";
+            this.tbGezahlteZinsen.ReadOnly = true;
+            this.tbGezahlteZinsen.Size = new System.Drawing.Size(152, 20);
+            this.tbGezahlteZinsen.TabIndex = 26;
+            this.tbGezahlteZinsen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(26, 127);
+            this.label12.Location = new System.Drawing.Point(38, 132);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(36, 13);
             this.label12.TabIndex = 35;
             this.label12.Text = "Dauer";
             // 
-            // tbLaufzeit
+            // label1
             // 
-            this.tbLaufzeit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbLaufzeit.Location = new System.Drawing.Point(71, 124);
-            this.tbLaufzeit.Name = "tbLaufzeit";
-            this.tbLaufzeit.Size = new System.Drawing.Size(152, 20);
-            this.tbLaufzeit.TabIndex = 34;
-            this.tbLaufzeit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Auszahlung";
             // 
-            // label8
+            // tbDauer
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(231, 49);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(13, 13);
-            this.label8.TabIndex = 33;
-            this.label8.Text = "€";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(229, 101);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(13, 13);
-            this.label7.TabIndex = 32;
-            this.label7.Text = "€";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(229, 75);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(15, 13);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "%";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(35, 101);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "Rate";
-            // 
-            // tbRate
-            // 
-            this.tbRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRate.Location = new System.Drawing.Point(71, 98);
-            this.tbRate.Name = "tbRate";
-            this.tbRate.Size = new System.Drawing.Size(152, 20);
-            this.tbRate.TabIndex = 29;
-            this.tbRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbDauer.Location = new System.Drawing.Point(83, 129);
+            this.tbDauer.Name = "tbDauer";
+            this.tbDauer.ReadOnly = true;
+            this.tbDauer.Size = new System.Drawing.Size(152, 20);
+            this.tbDauer.TabIndex = 34;
+            this.tbDauer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 75);
+            this.label2.Location = new System.Drawing.Point(38, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 28;
             this.label2.Text = "Zinsen";
             // 
-            // label1
+            // label8
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 13);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Kapital";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(239, 54);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(13, 13);
+            this.label8.TabIndex = 33;
+            this.label8.Text = "€";
             // 
-            // tbZinsen
+            // tbRate
             // 
-            this.tbZinsen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbZinsen.Location = new System.Drawing.Point(71, 72);
-            this.tbZinsen.Name = "tbZinsen";
-            this.tbZinsen.Size = new System.Drawing.Size(152, 20);
-            this.tbZinsen.TabIndex = 26;
-            this.tbZinsen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbRate.Location = new System.Drawing.Point(83, 103);
+            this.tbRate.Name = "tbRate";
+            this.tbRate.ReadOnly = true;
+            this.tbRate.Size = new System.Drawing.Size(152, 20);
+            this.tbRate.TabIndex = 29;
+            this.tbRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // tbStart
+            // label7
             // 
-            this.tbStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbStart.Location = new System.Drawing.Point(71, 46);
-            this.tbStart.Name = "tbStart";
-            this.tbStart.Size = new System.Drawing.Size(152, 20);
-            this.tbStart.TabIndex = 25;
-            this.tbStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(239, 106);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(13, 13);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "€";
             // 
-            // label4
+            // label3
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(27, 13);
-            this.label4.TabIndex = 37;
-            this.label4.Text = "Titel";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(47, 106);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "Rate";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(239, 160);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(15, 13);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "%";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(239, 80);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(13, 13);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "€";
+            // 
+            // tbZinssatz
+            // 
+            this.tbZinssatz.Location = new System.Drawing.Point(83, 155);
+            this.tbZinssatz.Name = "tbZinssatz";
+            this.tbZinssatz.ReadOnly = true;
+            this.tbZinssatz.Size = new System.Drawing.Size(152, 20);
+            this.tbZinssatz.TabIndex = 41;
+            this.tbZinssatz.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(28, 160);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 13);
+            this.label9.TabIndex = 42;
+            this.label9.Text = "Zinssatz";
             // 
             // FinazierungControl
             // 
@@ -220,9 +268,10 @@
             this.Controls.Add(this.flowPanel);
             this.Controls.Add(this.panel1);
             this.Name = "FinazierungControl";
-            this.Size = new System.Drawing.Size(435, 352);
+            this.Size = new System.Drawing.Size(647, 581);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -235,15 +284,20 @@
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox tbLaufzeit;
+        private System.Windows.Forms.TextBox tbDauer;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbRate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbZinsen;
+        private System.Windows.Forms.TextBox tbGezahlteZinsen;
         private System.Windows.Forms.TextBox tbStart;
+        private System.Windows.Forms.Button btRefresh;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox tbZinssatz;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

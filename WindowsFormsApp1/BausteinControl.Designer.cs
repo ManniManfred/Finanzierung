@@ -80,11 +80,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 44);
+            this.label1.Location = new System.Drawing.Point(11, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Kapital";
+            this.label1.Text = "Auszahlung";
             // 
             // label2
             // 
@@ -299,7 +299,7 @@
             this.btRemove.Text = "-";
             this.btRemove.UseVisualStyleBackColor = true;
             // 
-            // Blatt
+            // BausteinControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -328,7 +328,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbZinsen);
             this.Controls.Add(this.tbStart);
-            this.Name = "Blatt";
+            this.Name = "BausteinControl";
             this.Size = new System.Drawing.Size(274, 275);
             this.ResumeLayout(false);
             this.PerformLayout();
