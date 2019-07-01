@@ -106,6 +106,7 @@ namespace FinzanzierungsApp
 
                 tbAnschluss.Text = parentBaustein?.Title;
                 tbAuszahlung.ReadOnly = parentBaustein != null;
+                tbRate.ReadOnly = parentBaustein != null;
 
                 if (ParentBaustein != null)
                 {
@@ -127,6 +128,7 @@ namespace FinzanzierungsApp
                 return;
 
             Auszahlung = ParentBaustein.RestSchuld;
+            Rate = ParentBaustein.Rate;
             StartDatum = ParentBaustein.EndDatum;
         }
 
@@ -273,7 +275,6 @@ namespace FinzanzierungsApp
         {
             var anschluss = Finazierung.AddBaustein();
             anschluss.ParentBaustein = this;
-            anschluss.Rate = Rate;
             anschluss.Title = "-> " + Title;
         }
     }

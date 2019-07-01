@@ -38,8 +38,11 @@ namespace FinzanzierungsApp
 
             foreach(var baustein in Bausteine)
             {
-                auszahlung += baustein.Auszahlung;
-                rate += baustein.Rate;
+                if (baustein.ParentBaustein == null)
+                {
+                    auszahlung += baustein.Auszahlung;
+                    rate += baustein.Rate;
+                }
                 gezahlteZinsen += baustein.GezahlteZinsen;
 
                 startDate = baustein.StartDatum < startDate ? baustein.StartDatum : startDate;
