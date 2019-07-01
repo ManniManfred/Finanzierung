@@ -62,6 +62,9 @@
             this.btAnschluss = new System.Windows.Forms.Button();
             this.btAdd = new System.Windows.Forms.Button();
             this.btRemove = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tbKeineTilgung = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tbAuszahlung
@@ -127,7 +130,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 294);
+            this.label4.Location = new System.Drawing.Point(37, 329);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 7;
@@ -137,7 +140,7 @@
             // 
             this.tbDauer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbDauer.Location = new System.Drawing.Point(79, 291);
+            this.tbDauer.Location = new System.Drawing.Point(79, 326);
             this.tbDauer.Name = "tbDauer";
             this.tbDauer.ReadOnly = true;
             this.tbDauer.Size = new System.Drawing.Size(183, 20);
@@ -147,7 +150,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(-2, 213);
+            this.label5.Location = new System.Drawing.Point(-2, 248);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 13);
             this.label5.TabIndex = 9;
@@ -157,7 +160,7 @@
             // 
             this.tbGesamt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbGesamt.Location = new System.Drawing.Point(79, 210);
+            this.tbGesamt.Location = new System.Drawing.Point(79, 245);
             this.tbGesamt.Name = "tbGesamt";
             this.tbGesamt.ReadOnly = true;
             this.tbGesamt.Size = new System.Drawing.Size(183, 20);
@@ -198,7 +201,7 @@
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(268, 213);
+            this.label9.Location = new System.Drawing.Point(268, 248);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(13, 13);
             this.label9.TabIndex = 13;
@@ -208,7 +211,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(268, 268);
+            this.label10.Location = new System.Drawing.Point(268, 303);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(13, 13);
             this.label10.TabIndex = 16;
@@ -217,7 +220,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(13, 268);
+            this.label11.Location = new System.Drawing.Point(13, 303);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(60, 13);
             this.label11.TabIndex = 15;
@@ -227,7 +230,7 @@
             // 
             this.tbRestSchuld.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRestSchuld.Location = new System.Drawing.Point(79, 265);
+            this.tbRestSchuld.Location = new System.Drawing.Point(79, 300);
             this.tbRestSchuld.Name = "tbRestSchuld";
             this.tbRestSchuld.ReadOnly = true;
             this.tbRestSchuld.Size = new System.Drawing.Size(183, 20);
@@ -268,7 +271,7 @@
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(268, 239);
+            this.label14.Location = new System.Drawing.Point(268, 274);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(13, 13);
             this.label14.TabIndex = 22;
@@ -277,7 +280,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(34, 239);
+            this.label15.Location = new System.Drawing.Point(34, 274);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(39, 13);
             this.label15.TabIndex = 21;
@@ -287,7 +290,7 @@
             // 
             this.tbGezahlteZinsen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbGezahlteZinsen.Location = new System.Drawing.Point(79, 236);
+            this.tbGezahlteZinsen.Location = new System.Drawing.Point(79, 271);
             this.tbGezahlteZinsen.Name = "tbGezahlteZinsen";
             this.tbGezahlteZinsen.ReadOnly = true;
             this.tbGezahlteZinsen.Size = new System.Drawing.Size(183, 20);
@@ -324,7 +327,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(43, 320);
+            this.label17.Location = new System.Drawing.Point(43, 355);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(32, 13);
             this.label17.TabIndex = 29;
@@ -334,7 +337,7 @@
             // 
             this.tbEnde.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbEnde.Location = new System.Drawing.Point(79, 317);
+            this.tbEnde.Location = new System.Drawing.Point(79, 352);
             this.tbEnde.Name = "tbEnde";
             this.tbEnde.ReadOnly = true;
             this.tbEnde.Size = new System.Drawing.Size(183, 20);
@@ -403,10 +406,43 @@
             this.btRemove.UseVisualStyleBackColor = true;
             this.btRemove.Click += new System.EventHandler(this.BtRemove_Click);
             // 
+            // label20
+            // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(268, 206);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(33, 13);
+            this.label20.TabIndex = 38;
+            this.label20.Text = "Jahre";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(3, 206);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(72, 13);
+            this.label21.TabIndex = 37;
+            this.label21.Text = "Keine Tilgung";
+            // 
+            // tbKeineTilgung
+            // 
+            this.tbKeineTilgung.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbKeineTilgung.Location = new System.Drawing.Point(79, 203);
+            this.tbKeineTilgung.Name = "tbKeineTilgung";
+            this.tbKeineTilgung.Size = new System.Drawing.Size(183, 20);
+            this.tbKeineTilgung.TabIndex = 36;
+            this.tbKeineTilgung.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbKeineTilgung.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            // 
             // BausteinControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.tbKeineTilgung);
             this.Controls.Add(this.tbAnschluss);
             this.Controls.Add(this.btAnschluss);
             this.Controls.Add(this.btAdd);
@@ -484,5 +520,8 @@
         private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Button btAnschluss;
         private System.Windows.Forms.TextBox tbAnschluss;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox tbKeineTilgung;
     }
 }

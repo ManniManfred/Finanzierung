@@ -68,6 +68,16 @@ namespace FinzanzierungsApp
             set => tbLaufzeit.Text = "" + value;
         }
 
+        public int KeineTilgung
+        {
+            get
+            {
+                int.TryParse(tbKeineTilgung.Text, out int result);
+                return result;
+            }
+            set => tbKeineTilgung.Text = "" + value;
+        }
+
         public DateTime StartDatum
         {
             get => startDate.Value;
@@ -137,10 +147,11 @@ namespace FinzanzierungsApp
             var zinsenProJahr = ZinsenProJahr / 100;
             var rate = Rate;
             var laufzeitInMonate = Laufzeit * 12;
-
+            var keineTilgungMonate = KeineTilgung * 12;
 
             var zinsenProMonat = zinsenProJahr / 12;
             var restSchuld = startSchuld;
+            double gesamt = 0.0;
             double gezahlteZinsen = 0.0;
             int monat = 0;
 
@@ -150,12 +161,29 @@ namespace FinzanzierungsApp
                     && !double.IsInfinity(restSchuld)
                     && (laufzeitInMonate == 0 || monat < laufzeitInMonate))
                 {
-                    gezahlteZinsen += restSchuld * zinsenProMonat;
-                    restSchuld = restSchuld * (1 + zinsenProMonat) - rate;
-                    monat++;
+                    if (monat >= keineTilgungMonate)
+                    {
+                        gezahlteZinsen += restSchuld * zinsenProMonat;
 
-                    if (restSchuld >= startSchuld)
-                        break;
+                        if (restSchuld <= rate)
+                        {
+                            restSchuld = 0.0;
+                            gesamt += restSchuld;
+                        }
+                        else
+                        {
+                            restSchuld = restSchuld * (1 + zinsenProMonat) - rate;
+                            gesamt += rate;
+                        }
+                        if (restSchuld >= startSchuld)
+                            break;
+                    }
+                    else
+                    {
+                        gezahlteZinsen += restSchuld * zinsenProMonat;
+                        gesamt += restSchuld * zinsenProMonat;
+                    }
+                    monat++;
                 }
             }
 
@@ -164,7 +192,7 @@ namespace FinzanzierungsApp
             GezahlteZinsen = gezahlteZinsen;
             EndDatum = StartDatum.AddMonths(monat);
 
-            tbGesamt.Text = "" + (monat * rate + restSchuld).ToString("N2");
+            tbGesamt.Text = "" + gesamt.ToString("N2");
             tbGezahlteZinsen.Text = (gezahlteZinsen).ToString("N2");
             tbRestSchuld.Text = restSchuld.ToString("N2");
 
@@ -200,6 +228,7 @@ namespace FinzanzierungsApp
             ele.Add(new XAttribute(nameof(ZinsenProJahr), ZinsenProJahr));
             ele.Add(new XAttribute(nameof(Rate), Rate));
             ele.Add(new XAttribute(nameof(Laufzeit), Laufzeit));
+            ele.Add(new XAttribute(nameof(KeineTilgung), KeineTilgung));
             ele.Add(new XAttribute(nameof(StartDatum), StartDatum));
         }
 
@@ -211,7 +240,7 @@ namespace FinzanzierungsApp
             parentBausteinTitle = ele.GetAttributeValue(nameof(ParentBaustein), parentBausteinTitle);
             if (!string.IsNullOrEmpty(parentBausteinTitle))
             {
-                foreach(var b in Finazierung.Bausteine)
+                foreach (var b in Finazierung.Bausteine)
                 {
                     if (b.Title == parentBausteinTitle)
                     {
@@ -225,6 +254,7 @@ namespace FinzanzierungsApp
             ZinsenProJahr = ele.GetAttributeValue(nameof(ZinsenProJahr), ZinsenProJahr);
             Rate = ele.GetAttributeValue(nameof(Rate), Rate);
             Laufzeit = ele.GetAttributeValue(nameof(Laufzeit), Laufzeit);
+            KeineTilgung = ele.GetAttributeValue(nameof(KeineTilgung), KeineTilgung);
             StartDatum = ele.GetAttributeValue(nameof(StartDatum), StartDatum);
         }
 
