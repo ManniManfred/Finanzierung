@@ -54,7 +54,7 @@
             // btSave
             // 
             this.btSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btSave.Image = global::WindowsFormsApp1.Properties.Resources.document_save_5;
+            this.btSave.Image = global::FinzanzierungsApp.Properties.Resources.document_save_5;
             this.btSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(23, 22);
@@ -69,7 +69,7 @@
             // btAdd
             // 
             this.btAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btAdd.Image = global::WindowsFormsApp1.Properties.Resources.list_add_3;
+            this.btAdd.Image = global::FinzanzierungsApp.Properties.Resources.list_add_3;
             this.btAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(23, 22);
@@ -79,7 +79,7 @@
             // btRemove
             // 
             this.btRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btRemove.Image = global::WindowsFormsApp1.Properties.Resources.list_remove_3;
+            this.btRemove.Image = global::FinzanzierungsApp.Properties.Resources.list_remove_3;
             this.btRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btRemove.Name = "btRemove";
             this.btRemove.Size = new System.Drawing.Size(23, 22);

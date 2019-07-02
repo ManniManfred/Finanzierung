@@ -20,7 +20,10 @@ namespace FinzanzierungsApp
         {
             InitializeComponent();
             Finazierung = finazierung;
+
+            sonderTilgungControl1.Tilgungs.ListChanged += Tilgungs_ListChanged;
         }
+
 
         public string Title
         {
@@ -132,6 +135,17 @@ namespace FinzanzierungsApp
             StartDatum = ParentBaustein.EndDatum;
         }
 
+        private void Tilgungs_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            try
+            {
+                CalcMonate();
+            }
+            catch
+            {
+            }
+        }
+
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -140,6 +154,15 @@ namespace FinzanzierungsApp
             }
             catch
             {
+            }
+        }
+
+        private IEnumerable<SonderTilgung> GetSonderTilgungen(DateTime monat)
+        {
+            foreach (var ti in sonderTilgungControl1.Tilgungs)
+            {
+                if (ti.Datum >= monat && ti.Datum < monat.AddMonths(1))
+                    yield return ti;
             }
         }
 
@@ -157,12 +180,19 @@ namespace FinzanzierungsApp
             double gezahlteZinsen = 0.0;
             int monat = 0;
 
+            //sonderTilgungControl1.Tilgungs
+
             if (startSchuld != 0.0 || zinsenProJahr != 0.0 || rate != 0.0)
             {
                 while (restSchuld > 0.0
                     && !double.IsInfinity(restSchuld)
                     && (laufzeitInMonate == 0 || monat < laufzeitInMonate))
                 {
+                    foreach (var ti in GetSonderTilgungen(StartDatum.AddMonths(monat)))
+                    {
+                        restSchuld -= ti.Betrag;
+                    }
+
                     if (monat >= keineTilgungMonate)
                     {
                         gezahlteZinsen += restSchuld * zinsenProMonat;
@@ -232,6 +262,13 @@ namespace FinzanzierungsApp
             ele.Add(new XAttribute(nameof(Laufzeit), Laufzeit));
             ele.Add(new XAttribute(nameof(KeineTilgung), KeineTilgung));
             ele.Add(new XAttribute(nameof(StartDatum), StartDatum));
+
+            foreach (var ti in sonderTilgungControl1.Tilgungs)
+            {
+                var xTilgung = new XElement("Sondertilgung");
+                ti.ToXml(xTilgung);
+                ele.Add(xTilgung);
+            }
         }
 
         public void FromXml(XElement ele)
@@ -258,6 +295,13 @@ namespace FinzanzierungsApp
             Laufzeit = ele.GetAttributeValue(nameof(Laufzeit), Laufzeit);
             KeineTilgung = ele.GetAttributeValue(nameof(KeineTilgung), KeineTilgung);
             StartDatum = ele.GetAttributeValue(nameof(StartDatum), StartDatum);
+
+            foreach (var xTilgung in ele.Elements("Sondertilgung"))
+            {
+                var ti = new SonderTilgung();
+                ti.FromXml(xTilgung);
+                sonderTilgungControl1.Tilgungs.Add(ti);
+            }
         }
 
         private void BtRemove_Click(object sender, EventArgs e)

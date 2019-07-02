@@ -65,6 +65,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.tbKeineTilgung = new System.Windows.Forms.TextBox();
+            this.sonderTilgungControl1 = new FinzanzierungsApp.SonderTilgungControl();
+            this.label22 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbAuszahlung
@@ -130,7 +132,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 329);
+            this.label4.Location = new System.Drawing.Point(37, 454);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 24;
@@ -140,7 +142,7 @@
             // 
             this.tbDauer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbDauer.Location = new System.Drawing.Point(79, 326);
+            this.tbDauer.Location = new System.Drawing.Point(79, 451);
             this.tbDauer.Name = "tbDauer";
             this.tbDauer.ReadOnly = true;
             this.tbDauer.Size = new System.Drawing.Size(183, 20);
@@ -150,7 +152,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(-2, 248);
+            this.label5.Location = new System.Drawing.Point(-2, 373);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 13);
             this.label5.TabIndex = 21;
@@ -160,7 +162,7 @@
             // 
             this.tbGesamt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbGesamt.Location = new System.Drawing.Point(79, 245);
+            this.tbGesamt.Location = new System.Drawing.Point(79, 370);
             this.tbGesamt.Name = "tbGesamt";
             this.tbGesamt.ReadOnly = true;
             this.tbGesamt.Size = new System.Drawing.Size(183, 20);
@@ -201,7 +203,7 @@
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(268, 248);
+            this.label9.Location = new System.Drawing.Point(268, 373);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(13, 13);
             this.label9.TabIndex = 34;
@@ -211,7 +213,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(268, 303);
+            this.label10.Location = new System.Drawing.Point(268, 428);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(13, 13);
             this.label10.TabIndex = 36;
@@ -220,7 +222,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(13, 303);
+            this.label11.Location = new System.Drawing.Point(13, 428);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(60, 13);
             this.label11.TabIndex = 23;
@@ -230,7 +232,7 @@
             // 
             this.tbRestSchuld.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRestSchuld.Location = new System.Drawing.Point(79, 300);
+            this.tbRestSchuld.Location = new System.Drawing.Point(79, 425);
             this.tbRestSchuld.Name = "tbRestSchuld";
             this.tbRestSchuld.ReadOnly = true;
             this.tbRestSchuld.Size = new System.Drawing.Size(183, 20);
@@ -271,7 +273,7 @@
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(268, 274);
+            this.label14.Location = new System.Drawing.Point(268, 399);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(13, 13);
             this.label14.TabIndex = 35;
@@ -280,7 +282,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(34, 274);
+            this.label15.Location = new System.Drawing.Point(34, 399);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(39, 13);
             this.label15.TabIndex = 22;
@@ -290,7 +292,7 @@
             // 
             this.tbGezahlteZinsen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbGezahlteZinsen.Location = new System.Drawing.Point(79, 271);
+            this.tbGezahlteZinsen.Location = new System.Drawing.Point(79, 396);
             this.tbGezahlteZinsen.Name = "tbGezahlteZinsen";
             this.tbGezahlteZinsen.ReadOnly = true;
             this.tbGezahlteZinsen.Size = new System.Drawing.Size(183, 20);
@@ -327,7 +329,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(43, 355);
+            this.label17.Location = new System.Drawing.Point(43, 480);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(32, 13);
             this.label17.TabIndex = 25;
@@ -337,7 +339,7 @@
             // 
             this.tbEnde.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbEnde.Location = new System.Drawing.Point(79, 352);
+            this.tbEnde.Location = new System.Drawing.Point(79, 477);
             this.tbEnde.Name = "tbEnde";
             this.tbEnde.ReadOnly = true;
             this.tbEnde.Size = new System.Drawing.Size(183, 20);
@@ -376,7 +378,7 @@
             // btAnschluss
             // 
             this.btAnschluss.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAnschluss.Image = global::WindowsFormsApp1.Properties.Resources.arrow_right_double;
+            this.btAnschluss.Image = global::FinzanzierungsApp.Properties.Resources.arrow_right_double;
             this.btAnschluss.Location = new System.Drawing.Point(268, 6);
             this.btAnschluss.Name = "btAnschluss";
             this.btAnschluss.Size = new System.Drawing.Size(30, 23);
@@ -387,7 +389,7 @@
             // btAdd
             // 
             this.btAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAdd.Image = global::WindowsFormsApp1.Properties.Resources.list_add;
+            this.btAdd.Image = global::FinzanzierungsApp.Properties.Resources.list_add;
             this.btAdd.Location = new System.Drawing.Point(232, 6);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(30, 23);
@@ -398,7 +400,7 @@
             // btRemove
             // 
             this.btRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btRemove.Image = global::WindowsFormsApp1.Properties.Resources.list_remove_5;
+            this.btRemove.Image = global::FinzanzierungsApp.Properties.Resources.list_remove_5;
             this.btRemove.Location = new System.Drawing.Point(202, 6);
             this.btRemove.Name = "btRemove";
             this.btRemove.Size = new System.Drawing.Size(30, 23);
@@ -436,10 +438,28 @@
             this.tbKeineTilgung.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbKeineTilgung.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
+            // sonderTilgungControl1
+            // 
+            this.sonderTilgungControl1.Location = new System.Drawing.Point(3, 248);
+            this.sonderTilgungControl1.Name = "sonderTilgungControl1";
+            this.sonderTilgungControl1.Size = new System.Drawing.Size(259, 116);
+            this.sonderTilgungControl1.TabIndex = 37;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(3, 232);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(84, 13);
+            this.label22.TabIndex = 38;
+            this.label22.Text = "Sondertilgungen";
+            // 
             // BausteinControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.sonderTilgungControl1);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.tbKeineTilgung);
@@ -478,7 +498,7 @@
             this.Controls.Add(this.tbZinsen);
             this.Controls.Add(this.tbAuszahlung);
             this.Name = "BausteinControl";
-            this.Size = new System.Drawing.Size(305, 414);
+            this.Size = new System.Drawing.Size(305, 503);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -523,5 +543,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox tbKeineTilgung;
+        private SonderTilgungControl sonderTilgungControl1;
+        private System.Windows.Forms.Label label22;
     }
 }
