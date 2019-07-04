@@ -54,6 +54,7 @@ namespace FinzanzierungsApp
             tbStart.Text = auszahlung.ToString("N2");
             tbRate.Text = rate.ToString("N2");
             tbGezahlteZinsen.Text = gezahlteZinsen.ToString("N2");
+            tbGesamt.Text = (gezahlteZinsen + auszahlung).ToString("N2");
 
             monate = endDate.MonthDifference(startDate);
             tbDauer.Text = "" + (monate / 12) + " Jahre " + (monate % 12) + " Monate";
