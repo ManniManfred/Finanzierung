@@ -199,8 +199,8 @@ namespace FinzanzierungsApp
 
                         if (restSchuld <= rate)
                         {
-                            restSchuld = 0.0;
                             gesamt += restSchuld;
+                            restSchuld = 0.0;
                         }
                         else
                         {
