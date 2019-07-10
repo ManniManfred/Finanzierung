@@ -146,7 +146,7 @@ namespace FinzanzierungsApp
             }
         }
 
-        private void TextBox_TextChanged(object sender, EventArgs e)
+        private void InputValueChanged(object sender, EventArgs e)
         {
             try
             {

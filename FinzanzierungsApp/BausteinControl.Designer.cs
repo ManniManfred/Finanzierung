@@ -78,7 +78,7 @@
             this.tbAuszahlung.Size = new System.Drawing.Size(183, 20);
             this.tbAuszahlung.TabIndex = 2;
             this.tbAuszahlung.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbAuszahlung.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.tbAuszahlung.TextChanged += new System.EventHandler(this.InputValueChanged);
             // 
             // tbZinsen
             // 
@@ -89,7 +89,7 @@
             this.tbZinsen.Size = new System.Drawing.Size(183, 20);
             this.tbZinsen.TabIndex = 3;
             this.tbZinsen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbZinsen.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.tbZinsen.TextChanged += new System.EventHandler(this.InputValueChanged);
             // 
             // label1
             // 
@@ -127,7 +127,7 @@
             this.tbRate.Size = new System.Drawing.Size(183, 20);
             this.tbRate.TabIndex = 4;
             this.tbRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbRate.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.tbRate.TextChanged += new System.EventHandler(this.InputValueChanged);
             // 
             // label4
             // 
@@ -257,7 +257,7 @@
             this.tbLaufzeit.Size = new System.Drawing.Size(183, 20);
             this.tbLaufzeit.TabIndex = 5;
             this.tbLaufzeit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbLaufzeit.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.tbLaufzeit.TextChanged += new System.EventHandler(this.InputValueChanged);
             // 
             // label13
             // 
@@ -325,6 +325,7 @@
             this.startDate.Name = "startDate";
             this.startDate.Size = new System.Drawing.Size(183, 20);
             this.startDate.TabIndex = 6;
+            this.startDate.ValueChanged += new System.EventHandler(this.InputValueChanged);
             // 
             // label17
             // 
@@ -436,7 +437,7 @@
             this.tbKeineTilgung.Size = new System.Drawing.Size(183, 20);
             this.tbKeineTilgung.TabIndex = 7;
             this.tbKeineTilgung.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbKeineTilgung.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.tbKeineTilgung.TextChanged += new System.EventHandler(this.InputValueChanged);
             // 
             // sonderTilgungControl1
             // 
