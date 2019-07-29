@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\AnnuDarlehen.cs" />
+    <Compile Include="Entities\Finanzierung.cs" />
+    <Compile Include="Entities\IBaustein.cs" />
     <Compile Include="BausteinControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -67,7 +70,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SonderTilgung.cs" />
+    <Compile Include="Entities\SonderTilgung.cs" />
     <Compile Include="SonderTilgungControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

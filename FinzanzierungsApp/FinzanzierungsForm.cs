@@ -54,11 +54,11 @@ namespace FinzanzierungsApp
         {
             XDocument doc = new XDocument(new XElement("Daten"));
 
-            foreach(var baustein in varianten)
+            foreach(var variante in varianten)
             {
-                var xBaustein = new XElement("Variante");
-                doc.Root.Add(xBaustein);
-                baustein.ToXml(xBaustein);
+                var xVariante = new XElement("Variante");
+                doc.Root.Add(xVariante);
+                variante.ToXml(xVariante);
             }
 
             doc.Save(fileName);

@@ -18,47 +18,23 @@ namespace FinzanzierungsApp
             InitializeComponent();
         }
 
+        public Finanzierung Finanzierung { get; } = new Finanzierung();
+
         public string Title
         {
-            get => tbTitle.Text;
-            set => tbTitle.Text = value;
+            get => Finanzierung.Title;
+            set => Finanzierung.Title = value;
         }
-
-        public List<BausteinControl> Bausteine { get; } = new List<BausteinControl>();
 
         private void CalcSummen()
         {
-            double auszahlung = 0.0;
-            double rate = 0.0;
-            double gezahlteZinsen = 0.0;
-            int monate = 0;
+            Finanzierung.CalcSummen();
 
-            DateTime startDate = DateTime.MaxValue;
-            DateTime endDate = DateTime.MinValue;
-
-            foreach(var baustein in Bausteine)
-            {
-                if (baustein.ParentBaustein == null)
-                {
-                    auszahlung += baustein.Auszahlung;
-                    rate += baustein.Rate;
-                }
-                gezahlteZinsen += baustein.GezahlteZinsen;
-
-                startDate = baustein.StartDatum < startDate ? baustein.StartDatum : startDate;
-                endDate = baustein.EndDatum > endDate ? baustein.EndDatum : endDate;
-
-                //monate = Math.Max(baustein.Monate, monate);
-            }
-
-            tbStart.Text = auszahlung.ToString("N2");
-            tbRate.Text = rate.ToString("N2");
-            tbGezahlteZinsen.Text = gezahlteZinsen.ToString("N2");
-            tbGesamt.Text = (gezahlteZinsen + auszahlung).ToString("N2");
-
-            monate = endDate.MonthDifference(startDate);
-            tbDauer.Text = "" + (monate / 12) + " Jahre " + (monate % 12) + " Monate";
-            //tbDauer.Text = (endDate - startDate).ToString("")
+            tbStart.Text = Finanzierung.Auszahlung.ToString("N2");
+            tbRate.Text = Finanzierung.Rate.ToString("N2");
+            tbGezahlteZinsen.Text = Finanzierung.GezahlteZinsen.ToString("N2");
+            tbGesamt.Text = Finanzierung.Gesamt.ToString("N2");
+            tbDauer.Text = "" + (Finanzierung.Dauer / 12) + " Jahre " + (Finanzierung.Dauer % 12) + " Monate";
         }
 
         private void BtAddBaustein_Click(object sender, EventArgs e)
@@ -73,52 +49,53 @@ namespace FinzanzierungsApp
 
         public BausteinControl AddBaustein()
         {
-            var baustein = new BausteinControl(this);
-            Bausteine.Add(baustein);
-            flowPanel.Controls.Add(baustein);
+            var baustein = new AnnuDarlehen();
+            Finanzierung.AddBaustein(baustein);
 
-            baustein.SmthChanged += Baustein_SmthChanged;
-            return baustein;
+            return AddBausteinCtrl(baustein);
         }
 
+        public BausteinControl AddBausteinCtrl(IBaustein baustein)
+        {
+            var ctrl = new BausteinControl(this, baustein);
+            flowPanel.Controls.Add(ctrl);
+
+            ctrl.SmthChanged += Baustein_SmthChanged;
+            return ctrl;
+        }
 
         public void RemoveBaustein(BausteinControl baustein)
         {
-            Bausteine.Remove(baustein);
+            Finanzierung.RemoveBaustein(baustein?.Baustein);
             flowPanel.Controls.Remove(baustein);
             baustein.SmthChanged -= Baustein_SmthChanged;
         }
+
 
         private void Baustein_SmthChanged(object sender, EventArgs e)
         {
             CalcSummen();
         }
 
-        public void ToXml(XElement xFinazierung)
+        public void ToXml(XElement xVariante)
         {
-            xFinazierung.Add(new XAttribute(nameof(Title), Title));
-            foreach (var baustein in Bausteine)
-            {
-                var xBaustein = new XElement("Baustein");
-                xFinazierung.Add(xBaustein);
-                baustein.ToXml(xBaustein);
-            }
+            Finanzierung.ToXml(xVariante);
         }
 
-        public void FromXml(XElement xFinazierung)
+        public void FromXml(XElement xVariante)
         {
-            Title = xFinazierung.GetAttributeValue(nameof(Title), Title);
-            flowPanel.Controls.Clear();
-
-            foreach (var xBaustein in xFinazierung.Elements("Baustein"))
+            Finanzierung.FromXml(xVariante);
+            foreach(var b in Finanzierung.GetBausteine())
             {
-                var baustein = AddBaustein();
-                baustein.FromXml(xBaustein);
+                AddBausteinCtrl(b);
             }
+
+            tbTitle.Text = Title;
         }
 
         private void TbTitle_TextChanged(object sender, EventArgs e)
         {
+            Title = tbTitle.Text;
             var parent = Parent as TabPage;
             if (parent != null)
                 parent.Text = tbTitle.Text;
