@@ -10,7 +10,9 @@ namespace FinzanzierungsApp
 {
     public class AnnuDarlehen : IBaustein
     {
-        [Browsable(false)]
+        [Category("Angaben")]
+        [ReadOnly(true)]
+        [DisplayName("Anschlussf. von")]
         public IBaustein ParentBaustein { get; set; }
 
         [Category("Angaben")]
@@ -75,6 +77,11 @@ namespace FinzanzierungsApp
                         yield return ti;
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            return "Baustein: " + Title;
         }
 
         public void Calc()

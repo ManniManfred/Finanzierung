@@ -91,6 +91,7 @@ namespace FinzanzierungsApp
             }
 
             tbTitle.Text = Title;
+            CalcSummen();
         }
 
         private void TbTitle_TextChanged(object sender, EventArgs e)

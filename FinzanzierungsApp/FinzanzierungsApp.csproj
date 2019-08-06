@@ -55,6 +55,9 @@
     <Compile Include="BausteinControl.Designer.cs">
       <DependentUpon>BausteinControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExPropertyGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="FinazierungControl.cs">
       <SubType>UserControl</SubType>

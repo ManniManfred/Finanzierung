@@ -14,7 +14,6 @@ namespace FinzanzierungsApp
     public partial class BausteinControl : UserControl
     {
         public event EventHandler SmthChanged;
-        private BausteinControl parentBaustein;
 
         public BausteinControl(FinazierungControl finazierung, IBaustein baustein)
         {
@@ -32,7 +31,14 @@ namespace FinzanzierungsApp
         public string Title
         {
             get => Baustein.Title;
-            set => Baustein.Title = value;
+            set
+            {
+                if (Baustein.Title != value)
+                {
+                    Baustein.Title = value;
+                    tbTitle.Text = value;
+                }
+            }
         }
 
         public int Monate { get; set; }
@@ -68,6 +74,8 @@ namespace FinzanzierungsApp
         {
             Baustein.Calc();
             propertyGrid1.Refresh();
+
+            SmthChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void tbTitle_TextChanged(object sender, EventArgs e)

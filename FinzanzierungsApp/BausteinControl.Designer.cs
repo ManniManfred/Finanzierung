@@ -33,7 +33,7 @@
             this.btAnschluss = new System.Windows.Forms.Button();
             this.btAdd = new System.Windows.Forms.Button();
             this.btRemove = new System.Windows.Forms.Button();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.propertyGrid1 = new ExPropertyGrid();
             this.SuspendLayout();
             // 
             // tbTitle
@@ -123,6 +123,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Button btAnschluss;
-        private System.Windows.Forms.PropertyGrid propertyGrid1;
+        private ExPropertyGrid propertyGrid1;
     }
 }
