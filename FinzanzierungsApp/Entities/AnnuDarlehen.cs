@@ -55,12 +55,14 @@ namespace FinzanzierungsApp
         public string Gesamtkosten => Gesamt.ToString("C");
 
         [Category("Ergebnis")]
+        [DisplayName("Restschuld")]
         public string RestSchuldText => RestSchuld.ToString("C");
 
         [Category("Ergebnis")]
         public string Dauer => "" + (Monate / 12) + " Jahre " + (Monate % 12) + " Monate";
 
         [Category("Ergebnis")]
+        [DisplayName("Gezahlte Zinsen")]
         public string GezahlteZinsenText => GezahlteZinsen.ToString("C");
 
         private IEnumerable<SonderTilgung> GetSonderTilgungen(DateTime monat)
@@ -166,7 +168,7 @@ namespace FinzanzierungsApp
             parentBausteinTitle = ele.GetAttributeValue(nameof(ParentBaustein), parentBausteinTitle);
             if (!string.IsNullOrEmpty(parentBausteinTitle))
             {
-                finazierung.GetBaustein(parentBausteinTitle);
+                ParentBaustein = finazierung.GetBaustein(parentBausteinTitle);
             }
 
             Auszahlung = ele.GetAttributeValue(nameof(Auszahlung), Auszahlung);

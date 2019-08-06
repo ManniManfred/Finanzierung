@@ -32,12 +32,14 @@
             this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbGesamt = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.tbZinssatz = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tbStart = new System.Windows.Forms.TextBox();
-            this.btRefresh = new System.Windows.Forms.Button();
             this.tbTitle = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbGezahlteZinsen = new System.Windows.Forms.TextBox();
@@ -49,16 +51,14 @@
             this.tbRate = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbGesamt = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.btRefresh = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btAddBaustein
             // 
-            this.btAddBaustein.Location = new System.Drawing.Point(301, 168);
+            this.btAddBaustein.Location = new System.Drawing.Point(511, 67);
             this.btAddBaustein.Name = "btAddBaustein";
             this.btAddBaustein.Size = new System.Drawing.Size(93, 23);
             this.btAddBaustein.TabIndex = 0;
@@ -70,9 +70,9 @@
             // 
             this.flowPanel.AutoScroll = true;
             this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowPanel.Location = new System.Drawing.Point(0, 236);
+            this.flowPanel.Location = new System.Drawing.Point(0, 161);
             this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(647, 345);
+            this.flowPanel.Size = new System.Drawing.Size(647, 420);
             this.flowPanel.TabIndex = 2;
             // 
             // panel1
@@ -83,7 +83,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(647, 236);
+            this.panel1.Size = new System.Drawing.Size(647, 161);
             this.panel1.TabIndex = 3;
             // 
             // groupBox1
@@ -109,14 +109,41 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(11, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(273, 217);
+            this.groupBox1.Size = new System.Drawing.Size(494, 140);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Summe";
             // 
+            // tbGesamt
+            // 
+            this.tbGesamt.Location = new System.Drawing.Point(83, 78);
+            this.tbGesamt.Name = "tbGesamt";
+            this.tbGesamt.ReadOnly = true;
+            this.tbGesamt.Size = new System.Drawing.Size(152, 20);
+            this.tbGesamt.TabIndex = 43;
+            this.tbGesamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(31, 81);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(43, 13);
+            this.label10.TabIndex = 44;
+            this.label10.Text = "Gesamt";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(239, 81);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(13, 13);
+            this.label11.TabIndex = 45;
+            this.label11.Text = "€";
+            // 
             // tbZinssatz
             // 
-            this.tbZinssatz.Location = new System.Drawing.Point(83, 182);
+            this.tbZinssatz.Location = new System.Drawing.Point(314, 103);
             this.tbZinssatz.Name = "tbZinssatz";
             this.tbZinssatz.ReadOnly = true;
             this.tbZinssatz.Size = new System.Drawing.Size(152, 20);
@@ -126,7 +153,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(28, 187);
+            this.label9.Location = new System.Drawing.Point(259, 108);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(46, 13);
             this.label9.TabIndex = 42;
@@ -144,7 +171,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(239, 187);
+            this.label6.Location = new System.Drawing.Point(470, 108);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(15, 13);
             this.label6.TabIndex = 39;
@@ -158,16 +185,6 @@
             this.tbStart.Size = new System.Drawing.Size(152, 20);
             this.tbStart.TabIndex = 25;
             this.tbStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // btRefresh
-            // 
-            this.btRefresh.Location = new System.Drawing.Point(301, 136);
-            this.btRefresh.Name = "btRefresh";
-            this.btRefresh.Size = new System.Drawing.Size(93, 23);
-            this.btRefresh.TabIndex = 38;
-            this.btRefresh.Text = "Aktualisieren";
-            this.btRefresh.UseVisualStyleBackColor = true;
-            this.btRefresh.Click += new System.EventHandler(this.BtRefresh_Click);
             // 
             // tbTitle
             // 
@@ -198,7 +215,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(38, 159);
+            this.label12.Location = new System.Drawing.Point(269, 80);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(36, 13);
             this.label12.TabIndex = 35;
@@ -215,7 +232,7 @@
             // 
             // tbDauer
             // 
-            this.tbDauer.Location = new System.Drawing.Point(83, 156);
+            this.tbDauer.Location = new System.Drawing.Point(314, 77);
             this.tbDauer.Name = "tbDauer";
             this.tbDauer.ReadOnly = true;
             this.tbDauer.Size = new System.Drawing.Size(152, 20);
@@ -242,7 +259,7 @@
             // 
             // tbRate
             // 
-            this.tbRate.Location = new System.Drawing.Point(83, 130);
+            this.tbRate.Location = new System.Drawing.Point(314, 51);
             this.tbRate.Name = "tbRate";
             this.tbRate.ReadOnly = true;
             this.tbRate.Size = new System.Drawing.Size(152, 20);
@@ -252,7 +269,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(239, 133);
+            this.label7.Location = new System.Drawing.Point(470, 54);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(13, 13);
             this.label7.TabIndex = 32;
@@ -261,38 +278,21 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 133);
+            this.label3.Location = new System.Drawing.Point(278, 54);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 30;
             this.label3.Text = "Rate";
             // 
-            // tbGesamt
+            // btRefresh
             // 
-            this.tbGesamt.Location = new System.Drawing.Point(83, 78);
-            this.tbGesamt.Name = "tbGesamt";
-            this.tbGesamt.ReadOnly = true;
-            this.tbGesamt.Size = new System.Drawing.Size(152, 20);
-            this.tbGesamt.TabIndex = 43;
-            this.tbGesamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(31, 81);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 13);
-            this.label10.TabIndex = 44;
-            this.label10.Text = "Gesamt";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(239, 81);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(13, 13);
-            this.label11.TabIndex = 45;
-            this.label11.Text = "€";
+            this.btRefresh.Location = new System.Drawing.Point(511, 36);
+            this.btRefresh.Name = "btRefresh";
+            this.btRefresh.Size = new System.Drawing.Size(93, 23);
+            this.btRefresh.TabIndex = 38;
+            this.btRefresh.Text = "Aktualisieren";
+            this.btRefresh.UseVisualStyleBackColor = true;
+            this.btRefresh.Click += new System.EventHandler(this.BtRefresh_Click);
             // 
             // FinazierungControl
             // 

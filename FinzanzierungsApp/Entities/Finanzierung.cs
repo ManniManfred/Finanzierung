@@ -44,9 +44,8 @@ namespace FinzanzierungsApp
         public IBaustein GetBaustein(string title)
         {
             if (titleToBaustein == null)
-            {
-                bausteine.ToDictionary(b => b.Title);
-            }
+                titleToBaustein = bausteine.ToDictionary(b => b.Title);
+
             titleToBaustein.TryGetValue(title, out var result);
 
             return result;
