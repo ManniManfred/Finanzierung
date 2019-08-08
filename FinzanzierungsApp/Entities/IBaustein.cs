@@ -9,6 +9,8 @@ namespace FinzanzierungsApp
 {
     public interface IBaustein
     {
+        event EventHandler SmthChanged;
+
         string Title { get; set; }
 
         IBaustein ParentBaustein { get; set; }

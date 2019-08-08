@@ -10,10 +10,31 @@ namespace FinzanzierungsApp
 {
     public class AnnuDarlehen : IBaustein
     {
+        public event EventHandler SmthChanged;
+
+        private IBaustein parentBaustein;
+
         [Category("Angaben")]
         [ReadOnly(true)]
         [DisplayName("Anschlussf. von")]
-        public IBaustein ParentBaustein { get; set; }
+        public IBaustein ParentBaustein
+        {
+            get
+            {
+                return parentBaustein;
+            }
+            set
+            {
+                if (parentBaustein != value)
+                {
+                    if (parentBaustein != null)
+                        parentBaustein.SmthChanged += ParentBaustein_SmthChanged;
+                    parentBaustein = value;
+
+                }
+            }
+        }
+
 
         [Category("Angaben")]
         public List<SonderTilgung> SonderTilgungen { get; set; }
@@ -66,6 +87,19 @@ namespace FinzanzierungsApp
         [Category("Ergebnis")]
         [DisplayName("Gezahlte Zinsen")]
         public string GezahlteZinsenText => GezahlteZinsen.ToString("C");
+
+        private void ParentBaustein_SmthChanged(object sender, EventArgs e)
+        {
+            TakeFromParentBaustein();
+        }
+
+        public void TakeFromParentBaustein()
+        {
+            if (ParentBaustein != null)
+            {
+                StartDatum
+            }
+        }
 
         private IEnumerable<SonderTilgung> GetSonderTilgungen(DateTime monat)
         {
@@ -142,6 +176,8 @@ namespace FinzanzierungsApp
             GezahlteZinsen = gezahlteZinsen;
             EndDatum = StartDatum.AddMonths(monat);
             Gesamt = gesamt;
+
+            SmthChanged?.Invoke(this, EventArgs.Empty);
         }
 
 
