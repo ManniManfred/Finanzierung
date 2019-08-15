@@ -24,6 +24,7 @@ namespace FinzanzierungsApp
         public double Gesamt { get; private set; }
         public double GezahlteZinsen { get; private set; }
 
+        
         private void ClearCache()
         {
             titleToBaustein = null;

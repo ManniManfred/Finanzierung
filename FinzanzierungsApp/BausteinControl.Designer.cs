@@ -33,7 +33,7 @@
             this.btAnschluss = new System.Windows.Forms.Button();
             this.btAdd = new System.Windows.Forms.Button();
             this.btRemove = new System.Windows.Forms.Button();
-            this.propertyGrid1 = new ExPropertyGrid();
+            this.propertyGrid1 = new FinzanzierungsApp.ExPropertyGrid();
             this.SuspendLayout();
             // 
             // tbTitle
@@ -94,7 +94,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertyGrid1.HelpVisible = false;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 35);
+            this.propertyGrid1.Location = new System.Drawing.Point(3, 35);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.Size = new System.Drawing.Size(234, 328);
             this.propertyGrid1.TabIndex = 29;

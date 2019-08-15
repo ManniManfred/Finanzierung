@@ -47,7 +47,7 @@
             this.btRemove});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(995, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1038, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -92,14 +92,14 @@
             this.tabs.Location = new System.Drawing.Point(0, 25);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(995, 560);
+            this.tabs.Size = new System.Drawing.Size(1038, 560);
             this.tabs.TabIndex = 1;
             // 
             // FinzanzierungsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 585);
+            this.ClientSize = new System.Drawing.Size(1038, 585);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

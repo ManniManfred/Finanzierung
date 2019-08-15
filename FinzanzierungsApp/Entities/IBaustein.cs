@@ -20,6 +20,9 @@ namespace FinzanzierungsApp
         double GezahlteZinsen { get; }
         DateTime StartDatum { get; }
         DateTime EndDatum { get; }
+        double RestSchuld { get; }
+        double ZinsenProJahr { get; }
+        bool Unsicher { get; }
 
         void ToXml(XElement xBaustein);
         void Calc();

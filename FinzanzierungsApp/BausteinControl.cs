@@ -13,6 +13,8 @@ namespace FinzanzierungsApp
 {
     public partial class BausteinControl : UserControl
     {
+        private Color unsafeColor = Color.OrangeRed;
+
         public event EventHandler SmthChanged;
 
         public BausteinControl(FinazierungControl finazierung, IBaustein baustein)
@@ -23,7 +25,16 @@ namespace FinzanzierungsApp
             Baustein = baustein;
 
             Baustein.Calc();
+            Baustein.SmthChanged += Baustein_SmthChanged;
             UpdateGui();
+        }
+
+        private void Baustein_SmthChanged(object sender, EventArgs e)
+        {
+            propertyGrid1.Refresh();
+            this.BackColor = Baustein.Unsicher ? unsafeColor : Color.FromKnownColor(KnownColor.Control);
+
+            SmthChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public IBaustein Baustein { get; }
@@ -50,6 +61,8 @@ namespace FinzanzierungsApp
         {
             tbTitle.Text = Baustein.Title;
             propertyGrid1.SelectedObject = Baustein;
+
+            this.BackColor = Baustein.Unsicher ? unsafeColor : Color.FromKnownColor(KnownColor.Control);
         }
 
         private void BtRemove_Click(object sender, EventArgs e)
@@ -73,9 +86,6 @@ namespace FinzanzierungsApp
         private void propertyGrid1_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             Baustein.Calc();
-            propertyGrid1.Refresh();
-
-            SmthChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void tbTitle_TextChanged(object sender, EventArgs e)

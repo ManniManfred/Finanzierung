@@ -52,13 +52,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btRefresh = new System.Windows.Forms.Button();
+            this.tbUnsicherheit = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btAddBaustein
             // 
-            this.btAddBaustein.Location = new System.Drawing.Point(511, 67);
+            this.btAddBaustein.Location = new System.Drawing.Point(610, 13);
             this.btAddBaustein.Name = "btAddBaustein";
             this.btAddBaustein.Size = new System.Drawing.Size(93, 23);
             this.btAddBaustein.TabIndex = 0;
@@ -72,18 +73,19 @@
             this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowPanel.Location = new System.Drawing.Point(0, 161);
             this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(647, 420);
+            this.flowPanel.Size = new System.Drawing.Size(717, 420);
             this.flowPanel.TabIndex = 2;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tbUnsicherheit);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btAddBaustein);
             this.panel1.Controls.Add(this.btRefresh);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(647, 161);
+            this.panel1.Size = new System.Drawing.Size(717, 161);
             this.panel1.TabIndex = 3;
             // 
             // groupBox1
@@ -286,13 +288,24 @@
             // 
             // btRefresh
             // 
-            this.btRefresh.Location = new System.Drawing.Point(511, 36);
+            this.btRefresh.Location = new System.Drawing.Point(511, 13);
             this.btRefresh.Name = "btRefresh";
             this.btRefresh.Size = new System.Drawing.Size(93, 23);
             this.btRefresh.TabIndex = 38;
             this.btRefresh.Text = "Aktualisieren";
             this.btRefresh.UseVisualStyleBackColor = true;
             this.btRefresh.Click += new System.EventHandler(this.BtRefresh_Click);
+            // 
+            // tbUnsicherheit
+            // 
+            this.tbUnsicherheit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUnsicherheit.Location = new System.Drawing.Point(511, 42);
+            this.tbUnsicherheit.Multiline = true;
+            this.tbUnsicherheit.Name = "tbUnsicherheit";
+            this.tbUnsicherheit.ReadOnly = true;
+            this.tbUnsicherheit.Size = new System.Drawing.Size(192, 111);
+            this.tbUnsicherheit.TabIndex = 46;
             // 
             // FinazierungControl
             // 
@@ -301,8 +314,9 @@
             this.Controls.Add(this.flowPanel);
             this.Controls.Add(this.panel1);
             this.Name = "FinazierungControl";
-            this.Size = new System.Drawing.Size(647, 581);
+            this.Size = new System.Drawing.Size(717, 581);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -335,5 +349,6 @@
         private System.Windows.Forms.TextBox tbGesamt;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tbUnsicherheit;
     }
 }

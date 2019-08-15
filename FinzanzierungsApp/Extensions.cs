@@ -48,6 +48,19 @@ namespace FinzanzierungsApp
             return result;
         }
 
+
+        public static bool GetAttributeValue(this XElement ele, string name, bool fallback)
+        {
+            var attr = ele.Attribute(name);
+            if (attr == null)
+                return fallback;
+
+            if (!bool.TryParse(attr.Value, out var result))
+                return fallback;
+
+            return result;
+        }
+
         public static DateTime GetAttributeValue(this XElement ele, string name, DateTime fallback)
         {
             var attr = ele.Attribute(name);

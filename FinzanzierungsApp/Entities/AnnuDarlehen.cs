@@ -17,6 +17,7 @@ namespace FinzanzierungsApp
         [Category("Angaben")]
         [ReadOnly(true)]
         [DisplayName("Anschlussf. von")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
         public IBaustein ParentBaustein
         {
             get
@@ -28,8 +29,19 @@ namespace FinzanzierungsApp
                 if (parentBaustein != value)
                 {
                     if (parentBaustein != null)
-                        parentBaustein.SmthChanged += ParentBaustein_SmthChanged;
+                    {
+                        parentBaustein.SmthChanged -= ParentBaustein_SmthChanged;
+                    }
+
                     parentBaustein = value;
+
+                    if (parentBaustein != null)
+                    {
+                        Rate = parentBaustein.Rate;
+                        ZinsenProJahr = parentBaustein.ZinsenProJahr;
+                        TakeFromParentBaustein();
+                        parentBaustein.SmthChanged += ParentBaustein_SmthChanged;
+                    }
 
                 }
             }
@@ -59,6 +71,10 @@ namespace FinzanzierungsApp
 
         [Category("Angaben")]
         public DateTime StartDatum { get; set; }
+
+        [Category("Angaben")]
+        public bool Unsicher { get; set; }
+
 
 
         [Browsable(false)]
@@ -95,10 +111,13 @@ namespace FinzanzierungsApp
 
         public void TakeFromParentBaustein()
         {
-            if (ParentBaustein != null)
-            {
-                StartDatum
-            }
+            if (ParentBaustein == null)
+                return;
+
+            Auszahlung = ParentBaustein.RestSchuld;
+            StartDatum = ParentBaustein.EndDatum;
+
+            Calc();
         }
 
         private IEnumerable<SonderTilgung> GetSonderTilgungen(DateTime monat)
@@ -191,6 +210,7 @@ namespace FinzanzierungsApp
             ele.Add(new XAttribute(nameof(Laufzeit), Laufzeit));
             ele.Add(new XAttribute(nameof(KeineTilgung), KeineTilgung));
             ele.Add(new XAttribute(nameof(StartDatum), StartDatum));
+            ele.SetAttributeValue(nameof(Unsicher), Unsicher);
 
             if (SonderTilgungen != null)
             {
@@ -220,6 +240,7 @@ namespace FinzanzierungsApp
             Laufzeit = ele.GetAttributeValue(nameof(Laufzeit), Laufzeit);
             KeineTilgung = ele.GetAttributeValue(nameof(KeineTilgung), KeineTilgung);
             StartDatum = ele.GetAttributeValue(nameof(StartDatum), StartDatum);
+            Unsicher = ele.GetAttributeValue(nameof(Unsicher), Unsicher);
 
             SonderTilgungen = new List<SonderTilgung>();
             foreach (var xTilgung in ele.Elements("Sondertilgung"))
