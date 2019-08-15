@@ -75,6 +75,8 @@ namespace FinzanzierungsApp
                 var variante = AddVariante();
                 variante.FromXml(xVariante);
             }
+
+            UpdateGUI();
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -113,6 +115,40 @@ namespace FinzanzierungsApp
             {
                 RemoveVariante(variante);
             }
+        }
+
+        private void TbAnschlussZins_TextChanged(object sender, EventArgs e)
+        {
+            if (!double.TryParse(tbAnschlussZins.Text, out double anschlussZins))
+                return;
+
+            foreach(var v in varianten)
+            {
+                foreach(var b in v.Finanzierung.GetBausteine())
+                {
+                    if (b.Unsicher)
+                    {
+                        b.ZinsenProJahr = anschlussZins;
+                        b.Calc();
+                    }
+                }
+            }
+        }
+
+        private void UpdateGUI()
+        {
+            double anschlussZins = 0.0;
+            foreach (var v in varianten)
+            {
+                foreach (var b in v.Finanzierung.GetBausteine())
+                {
+                    if (b.Unsicher)
+                    {
+                        anschlussZins = Math.Max(b.ZinsenProJahr, anschlussZins);
+                    }
+                }
+            }
+            tbAnschlussZins.Text = anschlussZins.ToString("N2");
         }
     }
 }
