@@ -137,9 +137,12 @@ namespace FinzanzierungsApp
 
         private void UpdateGUI()
         {
+            var variants = new List<Finanzierung>();
             double anschlussZins = 0.0;
             foreach (var v in varianten)
             {
+                variants.Add(v.Finanzierung);
+
                 foreach (var b in v.Finanzierung.GetBausteine())
                 {
                     if (b.Unsicher)
@@ -149,6 +152,8 @@ namespace FinzanzierungsApp
                 }
             }
             tbAnschlussZins.Text = anschlussZins.ToString("N2");
+
+            dataGridView1.DataSource = variants;
         }
     }
 }
