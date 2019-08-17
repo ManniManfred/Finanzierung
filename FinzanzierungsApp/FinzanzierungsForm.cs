@@ -58,7 +58,14 @@ namespace FinzanzierungsApp
                     {
                         RemoveCtrlFor(v);
                     }
-
+                    //if (e.ListChangedType == ListChangedType.Reset
+                    //    && dataGridView1.SortedColumn != null)
+                    //{
+                    //    var order = dataGridView1.SortOrder == SortOrder.Descending
+                    //        ? ListSortDirection.Descending : ListSortDirection.Ascending;
+                    //
+                    //    dataGridView1.Sort(dataGridView1.SortedColumn, order);
+                    //}
                     break;
             }
 
@@ -128,6 +135,8 @@ namespace FinzanzierungsApp
         {
             var doc = XDocument.Load(fileName);
             vergleich.FromXml(doc.Root);
+
+            ReadAnschlussZins();
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -173,7 +182,7 @@ namespace FinzanzierungsApp
             if (!double.TryParse(tbAnschlussZins.Text, out double anschlussZins))
                 return;
 
-            foreach (var v in vergleich.Variants)
+            foreach (var v in vergleich.Variants.ToArray())
             {
                 foreach (var b in v.GetBausteine())
                 {
@@ -186,7 +195,7 @@ namespace FinzanzierungsApp
             }
         }
 
-        private void UpdateGUI()
+        private void ReadAnschlussZins()
         {
             double anschlussZins = 0.0;
             foreach (var v in vergleich.Variants)

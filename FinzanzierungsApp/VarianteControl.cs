@@ -49,27 +49,9 @@ namespace FinzanzierungsApp
             tbRate.Text = Variante.Rate.ToString("N2");
             tbGezahlteZinsen.Text = Variante.GezahlteZinsen.ToString("N2");
             tbGesamt.Text = Variante.Gesamt.ToString("N2");
-            tbDauer.Text = "" + (Variante.Dauer / 12) + " Jahre " + (Variante.Dauer % 12) + " Monate";
+            tbDauer.Text = Variante.GesamtLaufzeit;
 
-            string unsicherText = "";
-            double unsicherheitKennzahl = 0.0;
-            double unsicherheitSumme = 0.0;
-
-            foreach(var b in Variante.GetBausteine())
-            {
-                if (b.Unsicher)
-                {
-                    unsicherText += $"{b.Auszahlung.ToString("C")} - nach {b.StartDatum.Year - 1} Jahre - {b.ToString()}\r\n";
-                    unsicherheitKennzahl += b.Auszahlung * b.Auszahlung / (b.StartDatum.Year - 1) / 10000 / 10000;
-                    unsicherheitSumme += b.Auszahlung;
-                }
-            }
-
-            tbUnsicherheit.Text = "Unsicherheit: "
-                + unsicherheitKennzahl.ToString("N2") 
-                + " - " + unsicherheitSumme .ToString("C")
-                + "\r\n"
-                + unsicherText;
+            tbUnsicherheit.Text = Variante.Unsicherheit;
         }
 
         private void BtAddBaustein_Click(object sender, EventArgs e)

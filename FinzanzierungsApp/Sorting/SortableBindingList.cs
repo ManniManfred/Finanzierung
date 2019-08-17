@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Be.Timvw.Framework.Collections.Generic;
@@ -11,6 +11,7 @@ namespace Be.Timvw.Framework.ComponentModel
         private bool isSorted;
         private ListSortDirection listSortDirection;
         private PropertyDescriptor propertyDescriptor;
+        private bool firedFromThis;
 
         public SortableBindingList()
             : base(new List<T>())
@@ -49,6 +50,23 @@ namespace Be.Timvw.Framework.ComponentModel
             get { return true; }
         }
 
+        protected override void OnListChanged(ListChangedEventArgs e)
+        {
+            if (firedFromThis)
+            {
+                base.OnListChanged(e);
+                return;
+            }
+
+
+            if (this.SortPropertyCore != null)
+                ApplySortCore(this.SortPropertyCore, this.SortDirectionCore);
+            else
+                base.OnListChanged(e);
+
+            //Fire();
+        }
+
         protected override void ApplySortCore(PropertyDescriptor property, ListSortDirection direction)
         {
             List<T> itemsList = (List<T>)this.Items;
@@ -68,7 +86,20 @@ namespace Be.Timvw.Framework.ComponentModel
             this.listSortDirection = direction;
             this.isSorted = true;
 
-            this.OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
+            Fire();
+        }
+
+        private void Fire()
+        {
+            firedFromThis = true;
+            try
+            {
+                this.OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
+            }
+            finally
+            {
+                firedFromThis = false;
+            }
         }
 
         protected override void RemoveSortCore()
@@ -77,7 +108,7 @@ namespace Be.Timvw.Framework.ComponentModel
             this.propertyDescriptor = base.SortPropertyCore;
             this.listSortDirection = base.SortDirectionCore;
 
-            this.OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
+            Fire();
         }
 
         protected override int FindCore(PropertyDescriptor property, object key)

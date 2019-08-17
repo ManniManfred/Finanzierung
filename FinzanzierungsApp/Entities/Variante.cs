@@ -14,7 +14,6 @@ namespace FinzanzierungsApp
         private Dictionary<string, IBaustein> titleToBaustein;
 
         private string title;
-        private double auszahlung;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,16 +27,22 @@ namespace FinzanzierungsApp
             set => SetPropertyValue(ref title, value);
         }
 
-        public double Auszahlung { get; private set; }
-
-        public double ZinsenProJahr { get; private set; }
-        public double Rate { get; private set; }
-
-        public int Dauer { get; private set; }
         public double Gesamt { get; private set; }
         public double GezahlteZinsen { get; private set; }
 
-        public double Unsicherheit { get; private set; }
+        [Browsable(false)]
+        public int Dauer { get; private set; }
+
+        [DisplayName("Laufzeit")]
+        public string GesamtLaufzeit => "" + (this.Dauer / 12) + " Jahre " + (this.Dauer % 12) + " Monate";
+
+
+        public double UnsicherheitKennzahl { get; private set; }
+        public string Unsicherheit { get; private set; }
+
+        public double Auszahlung { get; private set; }
+
+        public double Rate { get; private set; }
 
         private void SetPropertyValue<T>(ref T member, T newValue, [CallerMemberName]string propName = null)
             where T : class
@@ -111,12 +116,39 @@ namespace FinzanzierungsApp
 
             Dauer = endDate.MonthDifference(startDate);
 
+            CalcUnsichertheit();
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Auszahlung)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Rate)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GezahlteZinsen)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Gesamt)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Dauer)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UnsicherheitKennzahl)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Unsicherheit)));
+        }
+
+        private void CalcUnsichertheit()
+        {
+
+            string unsicherText = "";
+            double unsicherheitKennzahl = 0.0;
+            double unsicherheitSumme = 0.0;
+
+            foreach (var b in GetBausteine())
+            {
+                if (b.Unsicher)
+                {
+                    unsicherText += $"{b.Auszahlung.ToString("C")} - nach {b.StartDatum.Year - 1} Jahre - {b.ToString()}\r\n";
+                    unsicherheitKennzahl += b.Auszahlung * b.Auszahlung / (b.StartDatum.Year - 1) / 10000 / 10000;
+                    unsicherheitSumme += b.Auszahlung;
+                }
+            }
+
+            UnsicherheitKennzahl = unsicherheitKennzahl;
+            Unsicherheit = unsicherheitKennzahl.ToString("N2")
+                + " - " + unsicherheitSumme.ToString("C")
+                + "\r\n"
+                + unsicherText;
         }
 
         public void ToXml(XElement xFinazierung)

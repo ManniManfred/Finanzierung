@@ -43,12 +43,14 @@
             this.tbAnschlussZins = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colZinsen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGesamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnsicherheit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAuszahlung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.toolStrip1.SuspendLayout();
             this.paSumme.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -56,6 +58,8 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -120,10 +124,10 @@
             this.paSumme.Controls.Add(this.label2);
             this.paSumme.Controls.Add(this.tbAnschlussZins);
             this.paSumme.Controls.Add(this.label1);
-            this.paSumme.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paSumme.Location = new System.Drawing.Point(0, 0);
+            this.paSumme.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.paSumme.Location = new System.Drawing.Point(3, 157);
             this.paSumme.Name = "paSumme";
-            this.paSumme.Size = new System.Drawing.Size(1038, 36);
+            this.paSumme.Size = new System.Drawing.Size(1024, 36);
             this.paSumme.TabIndex = 2;
             // 
             // label2
@@ -161,34 +165,13 @@
             this.colName,
             this.colZinsen,
             this.colGesamt,
-            this.colUnsicherheit,
             this.colAuszahlung});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 36);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1038, 186);
+            this.dataGridView1.Size = new System.Drawing.Size(1024, 154);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Panel1.Controls.Add(this.paSumme);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tabs);
-            this.splitContainer1.Size = new System.Drawing.Size(1038, 560);
-            this.splitContainer1.SplitterDistance = 222;
-            this.splitContainer1.TabIndex = 4;
             // 
             // colName
             // 
@@ -218,13 +201,6 @@
             this.colGesamt.Name = "colGesamt";
             this.colGesamt.ReadOnly = true;
             // 
-            // colUnsicherheit
-            // 
-            this.colUnsicherheit.DataPropertyName = "Unsicherheit";
-            this.colUnsicherheit.HeaderText = "Unsicherheit";
-            this.colUnsicherheit.Name = "colUnsicherheit";
-            this.colUnsicherheit.ReadOnly = true;
-            // 
             // colAuszahlung
             // 
             this.colAuszahlung.DataPropertyName = "Auszahlung";
@@ -234,6 +210,58 @@
             this.colAuszahlung.HeaderText = "Auszahlung";
             this.colAuszahlung.Name = "colAuszahlung";
             this.colAuszahlung.ReadOnly = true;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tabControl1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tabs);
+            this.splitContainer1.Size = new System.Drawing.Size(1038, 560);
+            this.splitContainer1.SplitterDistance = 222;
+            this.splitContainer1.TabIndex = 4;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1038, 222);
+            this.tabControl1.TabIndex = 4;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.paSumme);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1030, 196);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Zusammenfassung";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1030, 196);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Charts";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // FinzanzierungsForm
             // 
@@ -254,6 +282,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,8 +305,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colZinsen;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGesamt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUnsicherheit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAuszahlung;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 
