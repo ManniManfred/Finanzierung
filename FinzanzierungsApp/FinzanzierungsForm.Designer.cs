@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinzanzierungsForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btSave = new System.Windows.Forms.ToolStripButton();
@@ -36,14 +39,16 @@
             this.btRemove = new System.Windows.Forms.ToolStripButton();
             this.tabs = new System.Windows.Forms.TabControl();
             this.paSumme = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbAnschlussZins = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.tbAnschlussZins = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colZinsen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGesamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUnsicherheit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.colAuszahlung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.paSumme.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -121,14 +126,14 @@
             this.paSumme.Size = new System.Drawing.Size(1038, 36);
             this.paSumme.TabIndex = 2;
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Anschluß Zins";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(163, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(15, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "%";
             // 
             // tbAnschlussZins
             // 
@@ -139,53 +144,31 @@
             this.tbAnschlussZins.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbAnschlussZins.TextChanged += new System.EventHandler(this.TbAnschlussZins_TextChanged);
             // 
-            // label2
+            // label1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(163, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(15, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "%";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Anschluß Zins";
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colName,
             this.colZinsen,
-            this.colUnsicherheit});
+            this.colGesamt,
+            this.colUnsicherheit,
+            this.colAuszahlung});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 36);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(1038, 186);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // colName
-            // 
-            this.colName.DataPropertyName = "Title";
-            this.colName.HeaderText = "Name";
-            this.colName.Name = "colName";
-            this.colName.ReadOnly = true;
-            this.colName.Width = 200;
-            // 
-            // colZinsen
-            // 
-            this.colZinsen.DataPropertyName = "GezahlteZinsen";
-            this.colZinsen.HeaderText = "Zinsen";
-            this.colZinsen.Name = "colZinsen";
-            this.colZinsen.ReadOnly = true;
-            // 
-            // colUnsicherheit
-            // 
-            this.colUnsicherheit.DataPropertyName = "Unsicherheit";
-            this.colUnsicherheit.HeaderText = "Unsicherheit";
-            this.colUnsicherheit.Name = "colUnsicherheit";
-            this.colUnsicherheit.ReadOnly = true;
             // 
             // splitContainer1
             // 
@@ -206,6 +189,51 @@
             this.splitContainer1.Size = new System.Drawing.Size(1038, 560);
             this.splitContainer1.SplitterDistance = 222;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // colName
+            // 
+            this.colName.DataPropertyName = "Title";
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
+            this.colName.Width = 200;
+            // 
+            // colZinsen
+            // 
+            this.colZinsen.DataPropertyName = "GezahlteZinsen";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "C";
+            this.colZinsen.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colZinsen.HeaderText = "Zinsen";
+            this.colZinsen.Name = "colZinsen";
+            this.colZinsen.ReadOnly = true;
+            // 
+            // colGesamt
+            // 
+            this.colGesamt.DataPropertyName = "Gesamt";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C";
+            this.colGesamt.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colGesamt.HeaderText = "Gesamt";
+            this.colGesamt.Name = "colGesamt";
+            this.colGesamt.ReadOnly = true;
+            // 
+            // colUnsicherheit
+            // 
+            this.colUnsicherheit.DataPropertyName = "Unsicherheit";
+            this.colUnsicherheit.HeaderText = "Unsicherheit";
+            this.colUnsicherheit.Name = "colUnsicherheit";
+            this.colUnsicherheit.ReadOnly = true;
+            // 
+            // colAuszahlung
+            // 
+            this.colAuszahlung.DataPropertyName = "Auszahlung";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C";
+            this.colAuszahlung.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colAuszahlung.HeaderText = "Auszahlung";
+            this.colAuszahlung.Name = "colAuszahlung";
+            this.colAuszahlung.ReadOnly = true;
             // 
             // FinzanzierungsForm
             // 
@@ -243,10 +271,12 @@
         private System.Windows.Forms.TextBox tbAnschlussZins;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colZinsen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGesamt;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUnsicherheit;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAuszahlung;
     }
 }
 

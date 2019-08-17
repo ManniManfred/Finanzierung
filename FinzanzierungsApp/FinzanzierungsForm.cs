@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using Be.Timvw.Framework.ComponentModel;
 
 namespace FinzanzierungsApp
 {
@@ -16,11 +17,72 @@ namespace FinzanzierungsApp
     {
         private const string FILENAME = "Daten.xml";
 
-        private List<FinazierungControl> varianten = new List<FinazierungControl>();
+        private Vergleich vergleich = new Vergleich();
+
+        private Dictionary<Variante, TabPage> varianteToPage = new Dictionary<Variante, TabPage>();
 
         public FinzanzierungsForm()
         {
             InitializeComponent();
+
+            this.dataGridView1.DataSource = vergleich.Variants;
+
+            //dataGridView1.DataBindingComplete += MakeColumnsSortable_DataBindingComplete;
+            //vergleich.Variants.AddingNew += Variants_AddingNew;
+
+            vergleich.Variants.ListChanged += Variants_ListChanged;
+        }
+
+        private void Variants_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            switch (e.ListChangedType)
+            {
+                case ListChangedType.ItemChanged:
+                    break;
+                case ListChangedType.ItemAdded:
+                case ListChangedType.ItemDeleted:
+                case ListChangedType.Reset:
+
+                    var toRemove = new HashSet<Variante>(varianteToPage.Keys);
+
+                    foreach (var v in vergleich.Variants)
+                    {
+                        toRemove.Remove(v);
+                        if (!varianteToPage.TryGetValue(v, out var page))
+                        {
+                            AddCtrlFor(v);
+                        }
+                    }
+
+                    foreach(var v in toRemove)
+                    {
+                        RemoveCtrlFor(v);
+                    }
+
+                    break;
+            }
+
+            //UpdateGUI();
+        }
+
+        private void Variants_AddingNew(object sender, AddingNewEventArgs e)
+        {
+            e.NewObject = new Variante();
+        }
+
+        void MakeColumnsSortable_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            //Add this as an event on DataBindingComplete
+            DataGridView dataGridView = sender as DataGridView;
+            if (dataGridView == null)
+            {
+                var ex = new InvalidOperationException("This event is for a DataGridView type senders only.");
+                ex.Data.Add("Sender type", sender.GetType().Name);
+                throw ex;
+            }
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+                column.SortMode = DataGridViewColumnSortMode.Automatic;
         }
 
         protected override void OnShown(EventArgs e)
@@ -31,52 +93,41 @@ namespace FinzanzierungsApp
                 LoadData(FILENAME);
         }
 
-        private FinazierungControl AddVariante()
+        private VarianteControl AddCtrlFor(Variante v)
         {
-            var variante = new FinazierungControl();
+            var variante = new VarianteControl(v);
             variante.Dock = DockStyle.Fill;
-            varianten.Add(variante);
 
             var page = new TabPage();
+            page.Text = v.Title;
             page.Controls.Add(variante);
             tabs.TabPages.Add(page);
 
+            varianteToPage.Add(v, page);
             return variante;
         }
 
-        private void RemoveVariante(FinazierungControl variante)
+        private void RemoveCtrlFor(Variante variante)
         {
-            varianten.Remove(variante);
-            tabs.TabPages.Remove(variante.Parent as TabPage);
+            if (varianteToPage.TryGetValue(variante, out var page))
+            {
+                tabs.TabPages.Remove(page);
+                varianteToPage.Remove(variante);
+            }
         }
 
         private void SaveData(string fileName)
         {
             XDocument doc = new XDocument(new XElement("Daten"));
-
-            foreach(var variante in varianten)
-            {
-                var xVariante = new XElement("Variante");
-                doc.Root.Add(xVariante);
-                variante.ToXml(xVariante);
-            }
+            vergleich.ToXml(doc.Root);
 
             doc.Save(fileName);
         }
 
         private void LoadData(string fileName)
         {
-            tabs.TabPages.Clear();
-
             var doc = XDocument.Load(fileName);
-            
-            foreach(var xVariante in doc.Root.Elements("Variante"))
-            {
-                var variante = AddVariante();
-                variante.FromXml(xVariante);
-            }
-
-            UpdateGUI();
+            vergleich.FromXml(doc.Root);
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -101,7 +152,7 @@ namespace FinzanzierungsApp
 
         private void BtAdd_Click(object sender, EventArgs e)
         {
-            AddVariante();
+            vergleich.Variants.AddNew();
         }
 
         private void BtRemove_Click(object sender, EventArgs e)
@@ -109,11 +160,11 @@ namespace FinzanzierungsApp
             if (tabs.SelectedTab == null || tabs.SelectedTab.Controls.Count <= 0)
                 return;
 
-            var variante = tabs.SelectedTab.Controls[0] as FinazierungControl;
-            if (MessageBox.Show($"Variante {variante.Title} löschen?", "Löschen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+            var ctrl = tabs.SelectedTab.Controls[0] as VarianteControl;
+            if (MessageBox.Show($"Variante {ctrl.Title} löschen?", "Löschen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
                  == DialogResult.Yes)
             {
-                RemoveVariante(variante);
+                vergleich.Variants.Remove(ctrl.Variante);
             }
         }
 
@@ -122,9 +173,9 @@ namespace FinzanzierungsApp
             if (!double.TryParse(tbAnschlussZins.Text, out double anschlussZins))
                 return;
 
-            foreach(var v in varianten)
+            foreach (var v in vergleich.Variants)
             {
-                foreach(var b in v.Finanzierung.GetBausteine())
+                foreach (var b in v.GetBausteine())
                 {
                     if (b.Unsicher)
                     {
@@ -137,13 +188,10 @@ namespace FinzanzierungsApp
 
         private void UpdateGUI()
         {
-            var variants = new List<Finanzierung>();
             double anschlussZins = 0.0;
-            foreach (var v in varianten)
+            foreach (var v in vergleich.Variants)
             {
-                variants.Add(v.Finanzierung);
-
-                foreach (var b in v.Finanzierung.GetBausteine())
+                foreach (var b in v.GetBausteine())
                 {
                     if (b.Unsicher)
                     {
@@ -152,8 +200,6 @@ namespace FinzanzierungsApp
                 }
             }
             tbAnschlussZins.Text = anschlussZins.ToString("N2");
-
-            dataGridView1.DataSource = variants;
         }
     }
 }

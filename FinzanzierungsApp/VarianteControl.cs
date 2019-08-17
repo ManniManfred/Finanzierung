@@ -11,36 +11,51 @@ using System.Xml.Linq;
 
 namespace FinzanzierungsApp
 {
-    public partial class FinazierungControl : UserControl
+    public partial class VarianteControl : UserControl
     {
-        public FinazierungControl()
+        public VarianteControl(Variante variante)
         {
             InitializeComponent();
+
+            this.Variante = variante;
+
+            UpdateGui();
         }
 
-        public Finanzierung Finanzierung { get; } = new Finanzierung();
+        public Variante Variante { get; }
 
         public string Title
         {
-            get => Finanzierung.Title;
-            set => Finanzierung.Title = value;
+            get => Variante.Title;
+            set => Variante.Title = value;
+        }
+
+        public void UpdateGui()
+        {
+            foreach (var b in Variante.GetBausteine())
+            {
+                AddBausteinCtrl(b);
+            }
+
+            tbTitle.Text = Title;
+            CalcSummen();
         }
 
         private void CalcSummen()
         {
-            Finanzierung.CalcSummen();
+            Variante.CalcSummen();
 
-            tbStart.Text = Finanzierung.Auszahlung.ToString("N2");
-            tbRate.Text = Finanzierung.Rate.ToString("N2");
-            tbGezahlteZinsen.Text = Finanzierung.GezahlteZinsen.ToString("N2");
-            tbGesamt.Text = Finanzierung.Gesamt.ToString("N2");
-            tbDauer.Text = "" + (Finanzierung.Dauer / 12) + " Jahre " + (Finanzierung.Dauer % 12) + " Monate";
+            tbStart.Text = Variante.Auszahlung.ToString("N2");
+            tbRate.Text = Variante.Rate.ToString("N2");
+            tbGezahlteZinsen.Text = Variante.GezahlteZinsen.ToString("N2");
+            tbGesamt.Text = Variante.Gesamt.ToString("N2");
+            tbDauer.Text = "" + (Variante.Dauer / 12) + " Jahre " + (Variante.Dauer % 12) + " Monate";
 
             string unsicherText = "";
             double unsicherheitKennzahl = 0.0;
             double unsicherheitSumme = 0.0;
 
-            foreach(var b in Finanzierung.GetBausteine())
+            foreach(var b in Variante.GetBausteine())
             {
                 if (b.Unsicher)
                 {
@@ -70,7 +85,7 @@ namespace FinzanzierungsApp
         public BausteinControl AddBaustein()
         {
             var baustein = new AnnuDarlehen();
-            Finanzierung.AddBaustein(baustein);
+            Variante.AddBaustein(baustein);
 
             return AddBausteinCtrl(baustein);
         }
@@ -86,7 +101,7 @@ namespace FinzanzierungsApp
 
         public void RemoveBaustein(BausteinControl baustein)
         {
-            Finanzierung.RemoveBaustein(baustein?.Baustein);
+            Variante.RemoveBaustein(baustein?.Baustein);
             flowPanel.Controls.Remove(baustein);
             baustein.SmthChanged -= Baustein_SmthChanged;
         }
@@ -97,22 +112,7 @@ namespace FinzanzierungsApp
             CalcSummen();
         }
 
-        public void ToXml(XElement xVariante)
-        {
-            Finanzierung.ToXml(xVariante);
-        }
 
-        public void FromXml(XElement xVariante)
-        {
-            Finanzierung.FromXml(xVariante);
-            foreach(var b in Finanzierung.GetBausteine())
-            {
-                AddBausteinCtrl(b);
-            }
-
-            tbTitle.Text = Title;
-            CalcSummen();
-        }
 
         private void TbTitle_TextChanged(object sender, EventArgs e)
         {

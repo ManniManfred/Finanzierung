@@ -223,7 +223,7 @@ namespace FinzanzierungsApp
             }
         }
 
-        public void FromXml(Finanzierung finazierung, XElement ele)
+        public void FromXml(Variante finazierung, XElement ele)
         {
             Title = ele.GetAttributeValue(nameof(Title), Title);
 

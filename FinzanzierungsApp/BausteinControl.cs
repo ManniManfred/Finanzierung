@@ -17,7 +17,7 @@ namespace FinzanzierungsApp
 
         public event EventHandler SmthChanged;
 
-        public BausteinControl(FinazierungControl finazierung, IBaustein baustein)
+        public BausteinControl(VarianteControl finazierung, IBaustein baustein)
         {
             InitializeComponent();
 
@@ -55,7 +55,7 @@ namespace FinzanzierungsApp
         public int Monate { get; set; }
         public double GezahlteZinsen { get; set; }
         public DateTime EndDatum { get; set; }
-        public FinazierungControl Finazierung { get; }
+        public VarianteControl Finazierung { get; }
 
         public void UpdateGui()
         {

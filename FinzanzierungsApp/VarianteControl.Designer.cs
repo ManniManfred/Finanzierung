@@ -1,6 +1,6 @@
 ﻿namespace FinzanzierungsApp
 {
-    partial class FinazierungControl
+    partial class VarianteControl
     {
         /// <summary> 
         /// Erforderliche Designervariable.

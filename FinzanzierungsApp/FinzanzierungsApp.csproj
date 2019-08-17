@@ -47,7 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\AnnuDarlehen.cs" />
-    <Compile Include="Entities\Finanzierung.cs" />
+    <Compile Include="Entities\Vergleich.cs" />
+    <Compile Include="Entities\Variante.cs" />
     <Compile Include="Entities\IBaustein.cs" />
     <Compile Include="BausteinControl.cs">
       <SubType>UserControl</SubType>
@@ -59,11 +60,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Extensions.cs" />
-    <Compile Include="FinazierungControl.cs">
+    <Compile Include="VarianteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FinazierungControl.Designer.cs">
-      <DependentUpon>FinazierungControl.cs</DependentUpon>
+    <Compile Include="VarianteControl.Designer.cs">
+      <DependentUpon>VarianteControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FinzanzierungsForm.cs">
       <SubType>Form</SubType>
@@ -80,11 +81,13 @@
     <Compile Include="SonderTilgungControl.Designer.cs">
       <DependentUpon>SonderTilgungControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sorting\PropertyComparer.cs" />
+    <Compile Include="Sorting\SortableBindingList.cs" />
     <EmbeddedResource Include="BausteinControl.resx">
       <DependentUpon>BausteinControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FinazierungControl.resx">
-      <DependentUpon>FinazierungControl.cs</DependentUpon>
+    <EmbeddedResource Include="VarianteControl.resx">
+      <DependentUpon>VarianteControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FinzanzierungsForm.resx">
       <DependentUpon>FinzanzierungsForm.cs</DependentUpon>

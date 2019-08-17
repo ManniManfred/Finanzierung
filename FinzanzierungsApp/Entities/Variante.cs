@@ -1,22 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
 namespace FinzanzierungsApp
 {
-    public class Finanzierung
+    public class Variante : INotifyPropertyChanged
     {
+
         private List<IBaustein> bausteine = new List<IBaustein>();
         private Dictionary<string, IBaustein> titleToBaustein;
 
-        public Finanzierung()
+        private string title;
+        private double auszahlung;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public Variante()
         {
         }
 
-        public string Title { get; set; }
+        public string Title
+        {
+            get => title;
+            set => SetPropertyValue(ref title, value);
+        }
 
         public double Auszahlung { get; private set; }
+
         public double ZinsenProJahr { get; private set; }
         public double Rate { get; private set; }
 
@@ -26,6 +39,17 @@ namespace FinzanzierungsApp
 
         public double Unsicherheit { get; private set; }
 
+        private void SetPropertyValue<T>(ref T member, T newValue, [CallerMemberName]string propName = null)
+            where T : class
+        {
+            if (member != newValue)
+            {
+                member = newValue;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+            }
+        }
+
+        
         private void ClearCache()
         {
             titleToBaustein = null;
@@ -86,6 +110,13 @@ namespace FinzanzierungsApp
             Gesamt = gezahlteZinsen + auszahlung;
 
             Dauer = endDate.MonthDifference(startDate);
+
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Auszahlung)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Rate)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GezahlteZinsen)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Gesamt)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Dauer)));
         }
 
         public void ToXml(XElement xFinazierung)
