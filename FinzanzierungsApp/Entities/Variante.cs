@@ -173,5 +173,17 @@ namespace FinzanzierungsApp
                 this.AddBaustein(baustein);
             }
         }
+
+        public void SetUnsicherenZins(double anschlussZins)
+        {
+            foreach (var b in this.GetBausteine())
+            {
+                if (b.Unsicher)
+                {
+                    b.ZinsenProJahr = anschlussZins;
+                    b.Calc();
+                }
+            }
+        }
     }
 }

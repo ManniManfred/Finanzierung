@@ -51,6 +51,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.toolStrip1.SuspendLayout();
             this.paSumme.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -60,6 +61,7 @@
             this.splitContainer1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -116,7 +118,7 @@
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(1038, 334);
+            this.tabs.Size = new System.Drawing.Size(1038, 244);
             this.tabs.TabIndex = 1;
             // 
             // paSumme
@@ -227,7 +229,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabs);
             this.splitContainer1.Size = new System.Drawing.Size(1038, 560);
-            this.splitContainer1.SplitterDistance = 222;
+            this.splitContainer1.SplitterDistance = 312;
             this.splitContainer1.TabIndex = 4;
             // 
             // tabControl1
@@ -238,7 +240,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1038, 222);
+            this.tabControl1.Size = new System.Drawing.Size(1038, 312);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -255,13 +257,23 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cartesianChart1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1030, 196);
+            this.tabPage2.Size = new System.Drawing.Size(1030, 286);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Charts";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // cartesianChart1
+            // 
+            this.cartesianChart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cartesianChart1.Location = new System.Drawing.Point(3, 3);
+            this.cartesianChart1.Name = "cartesianChart1";
+            this.cartesianChart1.Size = new System.Drawing.Size(1024, 280);
+            this.cartesianChart1.TabIndex = 0;
+            this.cartesianChart1.Text = "cartesianChart1";
             // 
             // FinzanzierungsForm
             // 
@@ -284,6 +296,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,6 +322,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private LiveCharts.WinForms.CartesianChart cartesianChart1;
     }
 }
 

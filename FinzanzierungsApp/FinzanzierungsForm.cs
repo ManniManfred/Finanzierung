@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Be.Timvw.Framework.ComponentModel;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace FinzanzierungsApp
 {
@@ -31,6 +33,9 @@ namespace FinzanzierungsApp
             //vergleich.Variants.AddingNew += Variants_AddingNew;
 
             vergleich.Variants.ListChanged += Variants_ListChanged;
+
+
+            this.tabControl1.SelectedTab = tabPage2;
         }
 
         private void Variants_ListChanged(object sender, ListChangedEventArgs e)
@@ -137,6 +142,7 @@ namespace FinzanzierungsApp
             vergleich.FromXml(doc.Root);
 
             ReadAnschlussZins();
+            InitCharts();
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -184,14 +190,7 @@ namespace FinzanzierungsApp
 
             foreach (var v in vergleich.Variants.ToArray())
             {
-                foreach (var b in v.GetBausteine())
-                {
-                    if (b.Unsicher)
-                    {
-                        b.ZinsenProJahr = anschlussZins;
-                        b.Calc();
-                    }
-                }
+                v.SetUnsicherenZins(anschlussZins);
             }
         }
 
@@ -209,6 +208,51 @@ namespace FinzanzierungsApp
                 }
             }
             tbAnschlussZins.Text = anschlussZins.ToString("N2");
+        }
+
+        private void InitCharts()
+        {
+            var anschlussZinsenArr = new List<double>();
+            for (double aZins = 0.4; aZins < 7.0; aZins += 0.1)
+            {
+                anschlussZinsenArr.Add(aZins);
+            }
+
+            var series = new SeriesCollection();
+
+            foreach (var v in vergleich.Variants)
+            {
+                var serie = new LineSeries();
+                serie.Title = v.Title;
+
+                var values = new ChartValues<double>();
+                foreach(var aZins in anschlussZinsenArr)
+                {
+                    v.SetUnsicherenZins(aZins);
+                    values.Add(v.GezahlteZinsen);
+                }
+
+                serie.Values = values;
+                series.Add(serie);
+            }
+            cartesianChart1.Series = series;
+
+
+            var xAxis = new Axis();
+            xAxis.Title = "Anschluss Zins";
+            xAxis.Labels = new List<string>();
+
+            foreach (var aZins in anschlussZinsenArr)
+            {
+                xAxis.Labels.Add(aZins.ToString("N1") + " %");
+            }
+
+            cartesianChart1.AxisX.Add(xAxis);
+            cartesianChart1.AxisY.Add(new Axis
+            {
+                Title = "Zinsen",
+                LabelFormatter = value => value.ToString("C")
+            });
         }
     }
 }
