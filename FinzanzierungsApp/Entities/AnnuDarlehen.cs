@@ -249,6 +249,8 @@ namespace FinzanzierungsApp
                 ti.FromXml(xTilgung);
                 SonderTilgungen.Add(ti);
             }
+
+            Calc();
         }
 
     }

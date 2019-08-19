@@ -46,6 +46,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,6 +61,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChartForm.Designer.cs">
+      <DependentUpon>ChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\AnnuDarlehen.cs" />
     <Compile Include="Entities\Vergleich.cs" />
     <Compile Include="Entities\Variante.cs" />
@@ -99,6 +106,9 @@
     <Compile Include="Sorting\SortableBindingList.cs" />
     <EmbeddedResource Include="BausteinControl.resx">
       <DependentUpon>BausteinControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChartForm.resx">
+      <DependentUpon>ChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VarianteControl.resx">
       <DependentUpon>VarianteControl.cs</DependentUpon>

@@ -33,9 +33,6 @@ namespace FinzanzierungsApp
             //vergleich.Variants.AddingNew += Variants_AddingNew;
 
             vergleich.Variants.ListChanged += Variants_ListChanged;
-
-
-            this.tabControl1.SelectedTab = tabPage2;
         }
 
         private void Variants_ListChanged(object sender, ListChangedEventArgs e)
@@ -142,7 +139,6 @@ namespace FinzanzierungsApp
             vergleich.FromXml(doc.Root);
 
             ReadAnschlussZins();
-            InitCharts();
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -210,49 +206,17 @@ namespace FinzanzierungsApp
             tbAnschlussZins.Text = anschlussZins.ToString("N2");
         }
 
-        private void InitCharts()
+
+        private void BtChart_Click(object sender, EventArgs e)
         {
-            var anschlussZinsenArr = new List<double>();
-            for (double aZins = 0.4; aZins < 7.0; aZins += 0.1)
-            {
-                anschlussZinsenArr.Add(aZins);
-            }
+            var xClone = new XElement("Vergleich");
+            vergleich.ToXml(xClone);
+            var clone = new Vergleich();
+            clone.FromXml(xClone);
 
-            var series = new SeriesCollection();
-
-            foreach (var v in vergleich.Variants)
-            {
-                var serie = new LineSeries();
-                serie.Title = v.Title;
-
-                var values = new ChartValues<double>();
-                foreach(var aZins in anschlussZinsenArr)
-                {
-                    v.SetUnsicherenZins(aZins);
-                    values.Add(v.GezahlteZinsen);
-                }
-
-                serie.Values = values;
-                series.Add(serie);
-            }
-            cartesianChart1.Series = series;
-
-
-            var xAxis = new Axis();
-            xAxis.Title = "Anschluss Zins";
-            xAxis.Labels = new List<string>();
-
-            foreach (var aZins in anschlussZinsenArr)
-            {
-                xAxis.Labels.Add(aZins.ToString("N1") + " %");
-            }
-
-            cartesianChart1.AxisX.Add(xAxis);
-            cartesianChart1.AxisY.Add(new Axis
-            {
-                Title = "Zinsen",
-                LabelFormatter = value => value.ToString("C")
-            });
+            var chartForm = new ChartForm(clone);
+            chartForm.Icon = this.Icon;
+            chartForm.ShowDialog();
         }
     }
 }

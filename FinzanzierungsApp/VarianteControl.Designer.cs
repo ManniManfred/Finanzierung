@@ -31,6 +31,7 @@
             this.btAddBaustein = new System.Windows.Forms.Button();
             this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbUnsicherheit = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbGesamt = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -52,7 +53,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btRefresh = new System.Windows.Forms.Button();
-            this.tbUnsicherheit = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.btColor = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -88,8 +91,21 @@
             this.panel1.Size = new System.Drawing.Size(717, 161);
             this.panel1.TabIndex = 3;
             // 
+            // tbUnsicherheit
+            // 
+            this.tbUnsicherheit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUnsicherheit.Location = new System.Drawing.Point(511, 42);
+            this.tbUnsicherheit.Multiline = true;
+            this.tbUnsicherheit.Name = "tbUnsicherheit";
+            this.tbUnsicherheit.ReadOnly = true;
+            this.tbUnsicherheit.Size = new System.Drawing.Size(192, 111);
+            this.tbUnsicherheit.TabIndex = 46;
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btColor);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.tbGesamt);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label11);
@@ -296,24 +312,32 @@
             this.btRefresh.UseVisualStyleBackColor = true;
             this.btRefresh.Click += new System.EventHandler(this.BtRefresh_Click);
             // 
-            // tbUnsicherheit
+            // label13
             // 
-            this.tbUnsicherheit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbUnsicherheit.Location = new System.Drawing.Point(511, 42);
-            this.tbUnsicherheit.Multiline = true;
-            this.tbUnsicherheit.Name = "tbUnsicherheit";
-            this.tbUnsicherheit.ReadOnly = true;
-            this.tbUnsicherheit.Size = new System.Drawing.Size(192, 111);
-            this.tbUnsicherheit.TabIndex = 46;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(271, 27);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(34, 13);
+            this.label13.TabIndex = 46;
+            this.label13.Text = "Farbe";
             // 
-            // FinazierungControl
+            // btColor
+            // 
+            this.btColor.Location = new System.Drawing.Point(314, 22);
+            this.btColor.Name = "btColor";
+            this.btColor.Size = new System.Drawing.Size(75, 23);
+            this.btColor.TabIndex = 47;
+            this.btColor.Text = "Ändern";
+            this.btColor.UseVisualStyleBackColor = true;
+            this.btColor.Click += new System.EventHandler(this.BtColor_Click);
+            // 
+            // VarianteControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flowPanel);
             this.Controls.Add(this.panel1);
-            this.Name = "FinazierungControl";
+            this.Name = "VarianteControl";
             this.Size = new System.Drawing.Size(717, 581);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -350,5 +374,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox tbUnsicherheit;
+        private System.Windows.Forms.Button btColor;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }

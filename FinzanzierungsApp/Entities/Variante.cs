@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Design;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Xml.Linq;
@@ -36,6 +38,9 @@ namespace FinzanzierungsApp
         [DisplayName("Laufzeit")]
         public string GesamtLaufzeit => "" + (this.Dauer / 12) + " Jahre " + (this.Dauer % 12) + " Monate";
 
+        //[EditorAttribute(typeof(ColorEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Browsable(false)]
+        public Color Farbe { get; set; }
 
         public double UnsicherheitKennzahl { get; private set; }
         public string Unsicherheit { get; private set; }
@@ -154,6 +159,8 @@ namespace FinzanzierungsApp
         public void ToXml(XElement xFinazierung)
         {
             xFinazierung.Add(new XAttribute(nameof(Title), Title));
+            xFinazierung.Add(new XAttribute(nameof(Farbe), "" + Farbe.ToArgb()));
+
             foreach (var baustein in bausteine)
             {
                 var xBaustein = new XElement("Baustein");
@@ -165,6 +172,7 @@ namespace FinzanzierungsApp
         public void FromXml(XElement xFinazierung)
         {
             Title = xFinazierung.GetAttributeValue(nameof(Title), Title);
+            Farbe = xFinazierung.GetAttributeValue(nameof(Farbe), Farbe);
 
             foreach (var xBaustein in xFinazierung.Elements("Baustein"))
             {

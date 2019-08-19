@@ -24,7 +24,6 @@ namespace FinzanzierungsApp
             Finazierung = finazierung;
             Baustein = baustein;
 
-            Baustein.Calc();
             Baustein.SmthChanged += Baustein_SmthChanged;
             UpdateGui();
         }

@@ -38,6 +38,7 @@ namespace FinzanzierungsApp
             }
 
             tbTitle.Text = Title;
+            btColor.BackColor = Variante.Farbe;
             CalcSummen();
         }
 
@@ -104,5 +105,14 @@ namespace FinzanzierungsApp
                 parent.Text = tbTitle.Text;
         }
 
+        private void BtColor_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = Variante.Farbe;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                btColor.BackColor = colorDialog1.Color;
+                Variante.Farbe = colorDialog1.Color;
+            }
+        }
     }
 }

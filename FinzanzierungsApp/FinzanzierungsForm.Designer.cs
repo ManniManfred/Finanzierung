@@ -33,10 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinzanzierungsForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btAdd = new System.Windows.Forms.ToolStripButton();
-            this.btRemove = new System.Windows.Forms.ToolStripButton();
             this.tabs = new System.Windows.Forms.TabControl();
             this.paSumme = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,10 +45,10 @@
             this.colGesamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAuszahlung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            this.btSave = new System.Windows.Forms.ToolStripButton();
+            this.btAdd = new System.Windows.Forms.ToolStripButton();
+            this.btRemove = new System.Windows.Forms.ToolStripButton();
+            this.btChart = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.paSumme.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -59,9 +56,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -77,40 +71,10 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btSave
-            // 
-            this.btSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btSave.Image = global::FinzanzierungsApp.Properties.Resources.document_save_5;
-            this.btSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btSave.Name = "btSave";
-            this.btSave.Size = new System.Drawing.Size(23, 22);
-            this.btSave.Text = "Speichern";
-            this.btSave.Click += new System.EventHandler(this.BtSave_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btAdd
-            // 
-            this.btAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btAdd.Image = global::FinzanzierungsApp.Properties.Resources.list_add_3;
-            this.btAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(23, 22);
-            this.btAdd.Text = "Variante hinzufügen";
-            this.btAdd.Click += new System.EventHandler(this.BtAdd_Click);
-            // 
-            // btRemove
-            // 
-            this.btRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btRemove.Image = global::FinzanzierungsApp.Properties.Resources.list_remove_3;
-            this.btRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btRemove.Name = "btRemove";
-            this.btRemove.Size = new System.Drawing.Size(23, 22);
-            this.btRemove.Text = "Variante entfernen";
-            this.btRemove.Click += new System.EventHandler(this.BtRemove_Click);
             // 
             // tabs
             // 
@@ -118,18 +82,19 @@
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(1038, 244);
+            this.tabs.Size = new System.Drawing.Size(1038, 280);
             this.tabs.TabIndex = 1;
             // 
             // paSumme
             // 
+            this.paSumme.Controls.Add(this.btChart);
             this.paSumme.Controls.Add(this.label2);
             this.paSumme.Controls.Add(this.tbAnschlussZins);
             this.paSumme.Controls.Add(this.label1);
             this.paSumme.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.paSumme.Location = new System.Drawing.Point(3, 157);
+            this.paSumme.Location = new System.Drawing.Point(0, 240);
             this.paSumme.Name = "paSumme";
-            this.paSumme.Size = new System.Drawing.Size(1024, 36);
+            this.paSumme.Size = new System.Drawing.Size(1038, 36);
             this.paSumme.TabIndex = 2;
             // 
             // label2
@@ -169,10 +134,10 @@
             this.colGesamt,
             this.colAuszahlung});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1024, 154);
+            this.dataGridView1.Size = new System.Drawing.Size(1038, 276);
             this.dataGridView1.TabIndex = 3;
             // 
             // colName
@@ -223,57 +188,55 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.tabControl1);
+            this.splitContainer1.Panel1.Controls.Add(this.paSumme);
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabs);
             this.splitContainer1.Size = new System.Drawing.Size(1038, 560);
-            this.splitContainer1.SplitterDistance = 312;
+            this.splitContainer1.SplitterDistance = 276;
             this.splitContainer1.TabIndex = 4;
             // 
-            // tabControl1
+            // btSave
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1038, 312);
-            this.tabControl1.TabIndex = 4;
+            this.btSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btSave.Image = global::FinzanzierungsApp.Properties.Resources.document_save_5;
+            this.btSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btSave.Name = "btSave";
+            this.btSave.Size = new System.Drawing.Size(23, 22);
+            this.btSave.Text = "Speichern";
+            this.btSave.Click += new System.EventHandler(this.BtSave_Click);
             // 
-            // tabPage1
+            // btAdd
             // 
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.paSumme);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1030, 196);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Zusammenfassung";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.btAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btAdd.Image = global::FinzanzierungsApp.Properties.Resources.list_add_3;
+            this.btAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btAdd.Name = "btAdd";
+            this.btAdd.Size = new System.Drawing.Size(23, 22);
+            this.btAdd.Text = "Variante hinzufügen";
+            this.btAdd.Click += new System.EventHandler(this.BtAdd_Click);
             // 
-            // tabPage2
+            // btRemove
             // 
-            this.tabPage2.Controls.Add(this.cartesianChart1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1030, 286);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Charts";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.btRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btRemove.Image = global::FinzanzierungsApp.Properties.Resources.list_remove_3;
+            this.btRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btRemove.Name = "btRemove";
+            this.btRemove.Size = new System.Drawing.Size(23, 22);
+            this.btRemove.Text = "Variante entfernen";
+            this.btRemove.Click += new System.EventHandler(this.BtRemove_Click);
             // 
-            // cartesianChart1
+            // btChart
             // 
-            this.cartesianChart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cartesianChart1.Location = new System.Drawing.Point(3, 3);
-            this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(1024, 280);
-            this.cartesianChart1.TabIndex = 0;
-            this.cartesianChart1.Text = "cartesianChart1";
+            this.btChart.Location = new System.Drawing.Point(207, 5);
+            this.btChart.Name = "btChart";
+            this.btChart.Size = new System.Drawing.Size(75, 23);
+            this.btChart.TabIndex = 3;
+            this.btChart.Text = "Chart";
+            this.btChart.UseVisualStyleBackColor = true;
+            this.btChart.Click += new System.EventHandler(this.BtChart_Click);
             // 
             // FinzanzierungsForm
             // 
@@ -294,9 +257,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,10 +279,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colZinsen;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGesamt;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAuszahlung;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private LiveCharts.WinForms.CartesianChart cartesianChart1;
+        private System.Windows.Forms.Button btChart;
     }
 }
 

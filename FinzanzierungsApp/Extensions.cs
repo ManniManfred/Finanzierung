@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,15 @@ namespace FinzanzierungsApp
                 return fallback;
 
             return attr.Value;
+        }
+
+        public static Color GetAttributeValue(this XElement ele, string name, Color fallback)
+        {
+            var attr = ele.Attribute(name);
+            if (attr == null)
+                return fallback;
+
+            return Color.FromArgb(int.Parse(attr.Value));
         }
 
         public static double GetAttributeValue(this XElement ele, string name, double fallback)
