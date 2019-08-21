@@ -67,7 +67,9 @@
     <Compile Include="ChartForm.Designer.cs">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\AbstractBaustein.cs" />
     <Compile Include="Entities\AnnuDarlehen.cs" />
+    <Compile Include="Entities\BausparDarlehen.cs" />
     <Compile Include="Entities\Vergleich.cs" />
     <Compile Include="Entities\Variante.cs" />
     <Compile Include="Entities\IBaustein.cs" />

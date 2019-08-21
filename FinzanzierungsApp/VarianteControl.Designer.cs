@@ -33,6 +33,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbUnsicherheit = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btColor = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.tbGesamt = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -53,9 +55,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btRefresh = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btColor = new System.Windows.Forms.Button();
+            this.btNewBauspar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -76,11 +77,12 @@
             this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowPanel.Location = new System.Drawing.Point(0, 161);
             this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(717, 420);
+            this.flowPanel.Size = new System.Drawing.Size(882, 420);
             this.flowPanel.TabIndex = 2;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btNewBauspar);
             this.panel1.Controls.Add(this.tbUnsicherheit);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btAddBaustein);
@@ -88,7 +90,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(717, 161);
+            this.panel1.Size = new System.Drawing.Size(882, 161);
             this.panel1.TabIndex = 3;
             // 
             // tbUnsicherheit
@@ -99,7 +101,7 @@
             this.tbUnsicherheit.Multiline = true;
             this.tbUnsicherheit.Name = "tbUnsicherheit";
             this.tbUnsicherheit.ReadOnly = true;
-            this.tbUnsicherheit.Size = new System.Drawing.Size(192, 111);
+            this.tbUnsicherheit.Size = new System.Drawing.Size(357, 111);
             this.tbUnsicherheit.TabIndex = 46;
             // 
             // groupBox1
@@ -131,6 +133,25 @@
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Summe";
+            // 
+            // btColor
+            // 
+            this.btColor.Location = new System.Drawing.Point(314, 22);
+            this.btColor.Name = "btColor";
+            this.btColor.Size = new System.Drawing.Size(75, 23);
+            this.btColor.TabIndex = 47;
+            this.btColor.Text = "Ändern";
+            this.btColor.UseVisualStyleBackColor = true;
+            this.btColor.Click += new System.EventHandler(this.BtColor_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(271, 27);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(34, 13);
+            this.label13.TabIndex = 46;
+            this.label13.Text = "Farbe";
             // 
             // tbGesamt
             // 
@@ -312,24 +333,15 @@
             this.btRefresh.UseVisualStyleBackColor = true;
             this.btRefresh.Click += new System.EventHandler(this.BtRefresh_Click);
             // 
-            // label13
+            // btNewBauspar
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(271, 27);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(34, 13);
-            this.label13.TabIndex = 46;
-            this.label13.Text = "Farbe";
-            // 
-            // btColor
-            // 
-            this.btColor.Location = new System.Drawing.Point(314, 22);
-            this.btColor.Name = "btColor";
-            this.btColor.Size = new System.Drawing.Size(75, 23);
-            this.btColor.TabIndex = 47;
-            this.btColor.Text = "Ändern";
-            this.btColor.UseVisualStyleBackColor = true;
-            this.btColor.Click += new System.EventHandler(this.BtColor_Click);
+            this.btNewBauspar.Location = new System.Drawing.Point(709, 13);
+            this.btNewBauspar.Name = "btNewBauspar";
+            this.btNewBauspar.Size = new System.Drawing.Size(93, 23);
+            this.btNewBauspar.TabIndex = 47;
+            this.btNewBauspar.Text = "Bausparen";
+            this.btNewBauspar.UseVisualStyleBackColor = true;
+            this.btNewBauspar.Click += new System.EventHandler(this.BtNewBauspar_Click);
             // 
             // VarianteControl
             // 
@@ -338,7 +350,7 @@
             this.Controls.Add(this.flowPanel);
             this.Controls.Add(this.panel1);
             this.Name = "VarianteControl";
-            this.Size = new System.Drawing.Size(717, 581);
+            this.Size = new System.Drawing.Size(882, 581);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -377,5 +389,6 @@
         private System.Windows.Forms.Button btColor;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button btNewBauspar;
     }
 }

@@ -26,5 +26,6 @@ namespace FinzanzierungsApp
 
         void ToXml(XElement xBaustein);
         void Calc();
+        void FromXml(Variante variante, XElement xBaustein);
     }
 }

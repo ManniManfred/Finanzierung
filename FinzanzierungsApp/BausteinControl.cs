@@ -72,12 +72,12 @@ namespace FinzanzierungsApp
 
         private void BtAdd_Click(object sender, EventArgs e)
         {
-            Finazierung.AddBaustein();
+            Finazierung.AddBaustein(new AnnuDarlehen());
         }
 
         private void BtAnschluss_Click(object sender, EventArgs e)
         {
-            var anschluss = Finazierung.AddBaustein();
+            var anschluss = Finazierung.AddBaustein(new AnnuDarlehen());
             anschluss.Baustein.ParentBaustein = this.Baustein;
             anschluss.Title = "-> " + Title;
         }

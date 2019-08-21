@@ -164,6 +164,7 @@ namespace FinzanzierungsApp
             foreach (var baustein in bausteine)
             {
                 var xBaustein = new XElement("Baustein");
+                xBaustein.Add(new XAttribute("Type", baustein.GetType().Name));
                 xFinazierung.Add(xBaustein);
                 baustein.ToXml(xBaustein);
             }
@@ -176,7 +177,13 @@ namespace FinzanzierungsApp
 
             foreach (var xBaustein in xFinazierung.Elements("Baustein"))
             {
-                var baustein = new AnnuDarlehen();
+                var type = xBaustein.GetAttributeValue("Type", "AnnuDarlehen");
+                IBaustein baustein;
+                if (type == "BausparDarlehen")
+                    baustein = new BausparDarlehen();
+                else
+                    baustein = new AnnuDarlehen();
+
                 baustein.FromXml(this, xBaustein);
                 this.AddBaustein(baustein);
             }

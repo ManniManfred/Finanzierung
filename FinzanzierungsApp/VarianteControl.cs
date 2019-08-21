@@ -57,7 +57,7 @@ namespace FinzanzierungsApp
 
         private void BtAddBaustein_Click(object sender, EventArgs e)
         {
-            AddBaustein();
+            AddBaustein(new AnnuDarlehen());
         }
 
         private void BtRefresh_Click(object sender, EventArgs e)
@@ -65,9 +65,8 @@ namespace FinzanzierungsApp
             CalcSummen();
         }
 
-        public BausteinControl AddBaustein()
+        public BausteinControl AddBaustein(IBaustein baustein)
         {
-            var baustein = new AnnuDarlehen();
             Variante.AddBaustein(baustein);
 
             return AddBausteinCtrl(baustein);
@@ -113,6 +112,11 @@ namespace FinzanzierungsApp
                 btColor.BackColor = colorDialog1.Color;
                 Variante.Farbe = colorDialog1.Color;
             }
+        }
+
+        private void BtNewBauspar_Click(object sender, EventArgs e)
+        {
+            AddBaustein(new BausparDarlehen());
         }
     }
 }
