@@ -16,6 +16,16 @@ namespace FinzanzierungsApp
             return Math.Abs((lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year));
         }
 
+        public static T GetAttributeValue<T>(this XElement ele, string name, T fallback)
+            where T : System.Enum
+        {
+            var attr = ele.Attribute(name);
+            if (attr == null)
+                return fallback;
+
+            return (T)Enum.Parse(typeof(T), attr.Value);
+        }
+
         public static string GetAttributeValue(this XElement ele, string name, string fallback)
         {
             var attr = ele.Attribute(name);

@@ -83,6 +83,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Extensions.cs" />
+    <Compile Include="FormExtensions.cs" />
     <Compile Include="VarianteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

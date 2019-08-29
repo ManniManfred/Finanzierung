@@ -22,10 +22,14 @@ namespace FinzanzierungsApp
         private Vergleich vergleich = new Vergleich();
 
         private Dictionary<Variante, TabPage> varianteToPage = new Dictionary<Variante, TabPage>();
+        private ChartForm chartForm;
 
         public FinzanzierungsForm()
         {
             InitializeComponent();
+
+            chartForm = new ChartForm(vergleich);
+            chartForm.Icon = this.Icon;
 
             this.dataGridView1.DataSource = vergleich.Variants;
 
@@ -33,7 +37,34 @@ namespace FinzanzierungsApp
             //vergleich.Variants.AddingNew += Variants_AddingNew;
 
             vergleich.Variants.ListChanged += Variants_ListChanged;
+
+            LoadSettings();
         }
+
+        public string SettingsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FinanzierungsApp", "Settings.xml");
+        private void LoadSettings()
+        {
+            if (!File.Exists(SettingsPath))
+                return;
+
+            var doc = XDocument.Load(SettingsPath);
+
+            this.FromXml(doc.Root);
+            chartForm.FromXml(doc.Root);
+        }
+
+        private void SaveSettings()
+        {
+            var root = new XElement("Settings");
+            var doc = new XDocument(root);
+
+            this.ToXml(root);
+            chartForm.ToXml(root);
+
+            Directory.CreateDirectory(Path.GetDirectoryName(SettingsPath));
+            doc.Save(SettingsPath);
+        }
+
 
         private void Variants_ListChanged(object sender, ListChangedEventArgs e)
         {
@@ -100,6 +131,13 @@ namespace FinzanzierungsApp
 
             if (File.Exists(FILENAME))
                 LoadData(FILENAME);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            SaveSettings();
         }
 
         private VarianteControl AddCtrlFor(Variante v)
@@ -209,14 +247,12 @@ namespace FinzanzierungsApp
 
         private void BtChart_Click(object sender, EventArgs e)
         {
-            var xClone = new XElement("Vergleich");
-            vergleich.ToXml(xClone);
-            var clone = new Vergleich();
-            clone.FromXml(xClone);
+            chartForm.Show();
 
-            var chartForm = new ChartForm(clone);
-            chartForm.Icon = this.Icon;
-            chartForm.ShowDialog();
+            if (chartForm.WindowState == FormWindowState.Minimized)
+                chartForm.RestoreFromMinimzied();
+
+            chartForm.BringToFront();
         }
     }
 }
